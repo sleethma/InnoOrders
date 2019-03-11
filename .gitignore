@@ -30,3 +30,4 @@ inno-orders-web-0.0.1.jar
 inno-orders-web-0.0.1.jar.original
 *.original
 *.release-backup
+*.less
