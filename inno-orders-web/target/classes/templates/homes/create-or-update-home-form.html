@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+
+<body>
+
+<h2>
+    <th:block th:if="${home['new']}">New </th:block>
+    Home
+</h2>
+<form th:object="${home}" class="form-horizontal" method="post">
+    <input type="hidden" name="id" th:value="*{id}" />
+    <div class="form-group has-feedback">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Owner</label>
+            <div class="col-sm-10">
+                <span th:text="${home.owner?.firstName} + ' ' + ${home.owner?.lastName}" />
+            </div>
+        </div>
+        <input
+                th:replace="~{fragments/inputField :: input ('Resident First Name', 'residentFirstName', 'text')}" />
+        <input
+                th:replace="~{fragments/inputField :: input ('Resident Last Name', 'residentLastName', 'text')}" />
+        <input
+                th:replace="~{fragments/inputField :: input ('Build Date', 'buildDate', 'date')}" />
+        <input
+                th:replace="~{fragments/selectField :: select ('Type', 'planType', ${types})}" />
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button
+                    th:with="text=${home['new']} ? 'Add Home' : 'Update Home'"
+                    class="btn btn-default" type="submit" th:text="${text}">Add
+                Home</button>
+        </div>
+    </div>
+</form>
+
+</body>
+
+</html>

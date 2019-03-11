@@ -1,0 +1,12 @@
+create table contractor_specialties (contractor_id bigint not null, specialty_id bigint not null, primary key (contractor_id, specialty_id)) engine=InnoDB;
+create table contractors (id bigint not null auto_increment, first_name varchar(255), last_name varchar(255), primary key (id)) engine=InnoDB;
+create table homes (id bigint not null auto_increment, build_date date, property_address varchar(255), resident_first_name varchar(255), resident_last_name varchar(255), owner_id bigint, type_id bigint, primary key (id)) engine=InnoDB;
+create table owners (id bigint not null auto_increment, first_name varchar(255), last_name varchar(255), address varchar(255), city varchar(255), telephone varchar(255), primary key (id)) engine=InnoDB;
+create table plan_types (id bigint not null auto_increment, plan_type varchar(255), primary key (id)) engine=InnoDB;
+create table repairs (id bigint not null auto_increment, date date, description varchar(255), home_id bigint, primary key (id)) engine=InnoDB;
+create table specialties (id bigint not null auto_increment, description varchar(255), primary key (id)) engine=InnoDB;
+alter table contractor_specialties add constraint FKpjwqhcce218u60j68jr14e4xl foreign key (specialty_id) references specialties (id);
+alter table contractor_specialties add constraint FKd7566gkyut8ef185eshwqlgfd foreign key (contractor_id) references contractors (id);
+alter table homes add constraint FKe24b9dswnm8p4pgxkotcdekp4 foreign key (owner_id) references owners (id);
+alter table homes add constraint FK9hch2hk5ndcy22fp7bm0ri78s foreign key (type_id) references plan_types (id);
+alter table repairs add constraint FK7bbq9uujk5y03kwe7fsqg53do foreign key (home_id) references homes (id);

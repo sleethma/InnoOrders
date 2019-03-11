@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.innoorders.innosol.services.SpringDataJPA.OwnerDataJPAServiceTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.871 s - in com.innoorders.innosol.services.SpringDataJPA.OwnerDataJPAServiceTest

@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+
+<body>
+
+<h2>
+    <th:block th:if="${repair['new']}">New </th:block>
+    Repair
+</h2>
+
+<b>Pet</b>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Resident Name</th>
+        <th>Build Date</th>
+        <th>Floor Plan Type</th>
+        <th>Home Owner</th>
+    </tr>
+    </thead>
+    <tr>
+        <td th:text="${home.residentFirstName} + ${home.residentLastName}" /></td>
+        <td
+                th:text="${#temporals.format(home.buildDate, 'yyyy-MM-dd')}" /></td>
+        <td th:text="${home.planType}" /></td>
+        <td
+                th:text="${home.owner?.firstName + ' ' + home.owner?.lastName}" /></td>
+    </tr>
+</table>
+
+<form th:object="${repair}" class="form-horizontal" method="post">
+    <div class="form-group has-feedback">
+        <input
+                th:replace="~{fragments/inputField :: input ('Build Date', 'date', 'date')}"  />
+        <input
+                th:replace="~{fragments/inputField :: input ('Repair Description', 'repairDescription', 'text')}" />
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="hidden" name="homeId" th:value="${home.id}" />
+            <button class="btn btn-default" type="submit">Add Repair Request</button>
+        </div>
+    </div>
+</form>
+
+<br />
+<b>Previous Repairs</b>
+<table class="table table-striped">
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+    </tr>
+    <tr th:if="${!repair['new']}" th:each="repair : ${home.repairs}">
+        <td th:text="${#temporals.format(repair.date, 'yyyy-MM-dd')}" /></td>
+        <td th:text=" ${repair.repairDescription}" /></td>
+    </tr>
+</table>
+
+</body>
+</html>

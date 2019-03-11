@@ -1,0 +1,22 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/hoa_dev
+#    username: inn_dev_user
+#    password: Hannah00
+#    platform: mysql
+#  jpa:
+#    hibernate:
+#      ddl-auto: validate
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    database: mysql
+#    show-sql: true
+#
+#    auto-generate schema with hibernate
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: inn_database_create.sql
