@@ -1,21 +1,256 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-      <!--th:replace="~{fragments/layout :: layout (~{::body},'home')}"-->
+
 <head>
     <meta charset="UTF-8">
-    <title>InnoOrders | Transact Innovation</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>InnoSessions | Not Even A Click Away</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
     <style>
-        body{background-color:lightblue;}
+
+    :root{
+ --global-font:amita;
+ <!--&#45;&#45;primary:#ffffff;-->
+      <!--&#45;&#45;accent:#77C9D4;-->
+      <!--&#45;&#45;dark:#015249;-->
+      <!--&#45;&#45;muted:#A5A5AF;-->
+      <!--&#45;&#45;accent-bright:#57BC90;-->
+
+      --primary:#18121E;
+      --dark:#233237;
+      --muted:#984B43;
+      --accent:#EAC67A;
+}
+
+    @media only screen and (max-width: 1000px)  {
+  #powered-by{
+    display:none;
+  }
+}
+
+@media only screen and (max-width: 770px)  {
+  #jumbotron-jump{
+    margin-top:300px;
+  }
+}
+
+div p{
+  font-size:15px;
+}
+
+ul{
+  font-size:20px;
+}
+
+    .inn-vert-center{
+      margin:20px 0 0 30px;
+    }
+
+
+
+    h1{
+       font-family: var(--global-font)
+    }
+
+    .container{
+      background-color:var(--primary);
+    }
+
+    .jumbotron{
+      margin-top:70px;
+      background: linear-gradient(to right, var(--accent) 0%, var(--dark) 100%);
+      color:#ffffff;
+    }
+
+.navbar{
+  background-color:var(--dark);
+}
+
+.navbar-brand{
+  color:var(--accent);
+}
+
+.inn-nav-text{
+        color:var(--muted);
+    }
+    .inn-jumbotron-right{
+      position:relative; top:100px;
+    }
+
+    .inn-custom-text-stroke{
+       color: #99999;
+    }
+
+    .inn-panel-heading{
+      background-color:var(--muted);
+    }
+
+    .inn-accent-color{
+      background-color:var(--accent);
+    }
+
+    #footer{
+      background-color:var(--accent);
+    }
+
+
+
     </style>
+
 </head>
 <body>
-<h2 th:text="#{welcome}"> Title Text</h2>
+<div class="container">
+    <div>
+        <nav class="navbar  navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">InnoSessions</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
+                    <li><a class="inn-nav-text" href="#">Orders</a></li>
+                    <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
-<div class="row">
+
+    <div class="jumbotron inno-prim-bkg-color" id="jumbotron-jump">
+        <div class="row">
+            <div class="col-md-10 inn-custom-text-stroke">
+                <h1>InnoSessions<span class="glyphicon "></span></h1>
+                <p>Connect To Your Digital Self</p>
+            </div>
+
+            <div id="powered-by">
+                <i class="inn-jumbotron-right" style="font-size:15px;">Powered By:</i>
+                <img class=" img-rounded img-responsive inn-jumbotron-right"
+                     src="https://discoversdkcdn.azureedge.net/postscontent/spring/spring_3.png" width="15%"/>
+            </div>
+        </div>
+    </div>
+    <hr/>
+
+    <h3>Get Connected:</h3>
+    <div class="panel panel-body">
+        <div class="row">
+            <div class="col-md-5">
+                <p>
+                    The latest wearable security option that logs you in, automates your home and workspace through a
+                    secure touchless innovation!</p>
+            </div>
+            <div class="col-md-7">
+                <ul>
+                    <li>Secure Login to any device</li>
+                    <li>Automate your home and workspace touch-free</li>
+                    <li>Seemlessly log in and out</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="col-md-12">
-        <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+        <div class="col-md-4">
+            <div class="panel-group">
+                <div class="panel ">
+                    <div class="panel-heading inn-panel-heading">
+                        <span class="label label-info">1</span> &nbsp; Choose Product
+                    </div>
+                    <div class="panel-body">
+                        <center>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Fitbit_Charge_HR.jpg/440px-Fitbit_Charge_HR.jpg"
+                                 width="230px" class="img-responsive img-rounded"/>
+                            <br/>
+                            <button class="col-md-12 btn btn-lg inn-accent-color">Choose Style</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel-group">
+                <div class="panel ">
+                    <div class="panel-heading inn-panel-heading"><span class="label label-info">2</span> &nbsp;
+                        Customize Size
+                    </div>
+                    <div class="panel-body">
+                        <center>
+                            <img src="https://c1.staticflickr.com/3/2279/2348461718_84bf5fcee6_z.jpg?zz=1" width="130px"
+                                 class="img-responsive img-rounded"/>
+                            <br/>
+                            <button class="col-md-12 btn btn-lg inn-accent-color">Customize Size</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel-group">
+                <div class="panel ">
+                    <div class="panel-heading inn-panel-heading">
+                        <span class="label label-info">3</span> &nbsp; Connect With Authorized Devices
+                    </div>
+                    <div class="panel-body">
+                        <center>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOljnkLhCrz22X_1bhos5eeJ0lh-hqglMU28BT4GYPxyyX0xRM"
+                                 class="img-responsive img-rounded"/>
+                            <br/>
+                            <button class="col-md-12 btn btn-lg inn-accent-color">Connect</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <h3>Oh...how they work!</h3>
+    <br/>
+    <div class="media">
+        <div class="media-left">
+            <img src="https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807__340.png" class="media-object"
+                 style="width:60px">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">Jane Doe</h4>
+            <p>Lorem ipsum....yada yada Lorem ipsum....yada yada Lorem ipsum....yada yada Lorem ipsum....yada yada Lorem
+                ipsum....yada yada Lorem ipsum....yada</p>
+        </div>
+        <br/>
     </div>
 </div>
+<div id="footer" class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 inn-vert-center">
+            <p>
+                <span class="label label-info">Crafted by:</span>
+            </p>
+            <h5>Michael Sleeth | Innosol Solutions</h5>
+            <h7>Email: sleeth.ma@gmail.com</h7>
+            <h7>Phone: 901-672-4069</h7>
+        </div>
+        <div class="col-md-4 inn-vert-center">
 
+        </div>
+        <div class="col-md-4 inn-vert-center">
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </body>
 </html>
