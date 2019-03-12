@@ -1,7 +1,7 @@
 package com.innoorders.innosol.controllers;
 
 import com.innoorders.innosol.models.Customer;
-import com.innoorders.innosol.services.OwnerService;
+import com.innoorders.innosol.services.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +16,10 @@ import java.util.List;
 @Controller
 public class CustomerController {
 
-    private final OwnerService ownerService;
+    private final CustomerService customerService;
 
-    public CustomerController(OwnerService ownerService) {
-        this.ownerService = ownerService;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @InitBinder
@@ -36,7 +36,7 @@ public class CustomerController {
 
     @GetMapping("/customers/{customerId}")
     public String showOwner(@PathVariable Long customerId, Model model) {
-        model.addAttribute("customer", ownerService.findById(customerId));
+        model.addAttribute("customer", customerService.findById(customerId));
         return "customers/customerDetails";
     }
 
@@ -47,7 +47,7 @@ public class CustomerController {
             customer.setLastName("");
         }
 
-        List<Customer> results = ownerService.findAllByLastNameLike("%" + customer.getLastName().trim() + "%");
+        List<Customer> results = customerService.findAllByLastNameLike("%" + customer.getLastName().trim() + "%");
         if (results.isEmpty()) {
             return "customers/find";
         } else if (results.size() == 1) {
@@ -61,7 +61,7 @@ public class CustomerController {
 
     @GetMapping("/customers/{ownerId}/edit")
     public String createOrUpdateUserForm(Model model, @PathVariable Long ownerId) {
-        model.addAttribute("customer", ownerService.findById(ownerId));
+        model.addAttribute("customer", customerService.findById(ownerId));
 
         return "customers/create-or-update-customer-form";
     }
@@ -74,7 +74,7 @@ public class CustomerController {
             return "customers/create-or-update-customer-form";
         }
         customer.setId(ownerId);
-        Customer savedCustomer = ownerService.save(customer);
+        Customer savedCustomer = customerService.save(customer);
         return "redirect:/customers/" + savedCustomer.getId();
     }
 
@@ -88,7 +88,7 @@ public class CustomerController {
     @PostMapping("/customers/new")
     public String processNewOwnerForm(@Valid Customer customer, BindingResult result){
         if(result.hasErrors())return "customers/create-or-update-customer-form";
-        Customer savedCustomer = ownerService.save(customer);
+        Customer savedCustomer = customerService.save(customer);
         return "redirect:/customers/" + savedCustomer.getId();
     }
 

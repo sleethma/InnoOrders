@@ -1,7 +1,7 @@
 package com.innoorders.innosol.controllers;
 
 import com.innoorders.innosol.models.Customer;
-import com.innoorders.innosol.services.OwnerService;
+import com.innoorders.innosol.services.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,14 +29,14 @@ public class CustomerControllerTest {
 
     //Mocks
     @Mock
-    OwnerService ownerService;
+    CustomerService customerService;
 
     @InjectMocks
     CustomerController customerController;
 
     Set<Customer> customerSet;
     Customer customer = new Customer();
-    Long ownerId = 2L;
+    Long customerId = 2L;
 
     MockMvc mockMvc;
 
@@ -46,7 +46,7 @@ public class CustomerControllerTest {
         MockitoAnnotations.initMocks(this);
 
 
-        customer.setId(ownerId);
+        customer.setId(customerId);
         customer.setLastName("Smith");
         customerSet = new HashSet<>();
         customerSet.add(customer);
@@ -57,29 +57,29 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void showOwner() throws Exception {
+    public void showCustomer() throws Exception {
         Customer customer = new Customer();
-        customer.setId(ownerId);
-        when(ownerService.findById(anyLong())).thenReturn(customer);
+        customer.setId(customerId);
+        when(customerService.findById(anyLong())).thenReturn(customer);
 
 
         mockMvc.perform(get("/customers/2"))
                 .andExpect(model().attributeExists("customer"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("customers/ownerDetails"));
+                .andExpect(view().name("customers/customerDetails"));
 
     }
 
     @Test
-    public void findOwners() throws Exception {
+    public void findCustomers() throws Exception {
         mockMvc.perform(get("/customers/find"))
                 .andExpect(view().name("customers/find"))
                 .andExpect(status().isOk());
 
-        verifyZeroInteractions(ownerService);
+        verifyZeroInteractions(customerService);
     }
     @Test
-    public void findOwnersByLastNameLikeReturnMany() throws Exception {
+    public void findCustomersByLastNameLikeReturnMany() throws Exception {
         Customer customer1 = new Customer();
         customer1.setId(1L);
         Customer customer2 = new Customer();
@@ -88,7 +88,7 @@ public class CustomerControllerTest {
         customerList.add(customer1);
         customerList.add(customer2);
 
-        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
+        when(customerService.findAllByLastNameLike(anyString())).thenReturn(
                 customerList);
 
         mockMvc.perform(get("/customers"))
@@ -96,31 +96,31 @@ public class CustomerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("selections"));
 
-        verify(ownerService, times(1)).findAllByLastNameLike(any());
+        verify(customerService, times(1)).findAllByLastNameLike(any());
     }
 
     @Test
-    public void findOwnersByLastNameLikeReturnOne() throws Exception {
+    public void findCustomersByLastNameLikeReturnOne() throws Exception {
         Customer customer1 = new Customer();
         customer1.setId(1L);
         ArrayList<Customer> customerList = new ArrayList<>();
         customerList.add(customer1);
 
-        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
+        when(customerService.findAllByLastNameLike(anyString())).thenReturn(
                 customerList);
 
         mockMvc.perform(get("/customers"))
                 .andExpect(view().name("redirect:/customers/1"))
                 .andExpect(status().is3xxRedirection());
 
-        verify(ownerService, times(1)).findAllByLastNameLike(anyString());
+        verify(customerService, times(1)).findAllByLastNameLike(anyString());
     }
 
     @Test
-    public void initUpdateOwnerForm() throws Exception{
-        when(ownerService.findById(anyLong())).thenReturn(customer);
+    public void initUpdateCustomerForm() throws Exception{
+        when(customerService.findById(anyLong())).thenReturn(customer);
 
-        mockMvc.perform(get("/customers/"+ ownerId + "/edit"))
+        mockMvc.perform(get("/customers/"+ customerId + "/edit"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("customer"))
                 .andExpect(view().name("customers/create-or-update-customer-form"));
@@ -128,18 +128,18 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void processUpdateOwnerForm() throws Exception{
-        when(ownerService.save(any())).thenReturn(customer);
-        mockMvc.perform(post("/customers/" + ownerId + "/edit"))
+    public void processUpdateCustomerForm() throws Exception{
+        when(customerService.save(any())).thenReturn(customer);
+        mockMvc.perform(post("/customers/" + customerId + "/edit"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/customers/" + ownerId));
+                .andExpect(view().name("redirect:/customers/" + customerId));
 
-        verify(ownerService, times(1)).save(any());
+        verify(customerService, times(1)).save(any());
     }
 
 
     @Test
-    public void initNewOwnerForm() throws Exception{
+    public void initNewCustomerForm() throws Exception{
         mockMvc.perform(get("/customers/new"))
                 .andExpect(view().name("customers/create-or-update-customer-form"))
                 .andExpect(status().isOk())
@@ -148,8 +148,8 @@ public class CustomerControllerTest {
 
     }
     @Test
-    public void processNewOwnerForm() throws Exception{
-        when(ownerService.save(any())).thenReturn(customer);
+    public void processNewCustomerForm() throws Exception{
+        when(customerService.save(any())).thenReturn(customer);
 
         mockMvc.perform(post("/customers/new"))
                 .andExpect(status().is3xxRedirection())

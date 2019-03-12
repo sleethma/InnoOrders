@@ -4,7 +4,7 @@ import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.Home;
 import com.innoorders.innosol.models.PlanType;
 import com.innoorders.innosol.services.HomesService;
-import com.innoorders.innosol.services.OwnerService;
+import com.innoorders.innosol.services.CustomerService;
 import com.innoorders.innosol.services.PlanTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,15 +26,15 @@ public class HomeController {
 
 
     private final HomesService homesService;
-    private final OwnerService ownerService;
+    private final CustomerService customerService;
     private final PlanTypeService planTypeService;
 
     private static final String VIEWS_HOMES_CREATE_OR_UPDATE_FORM = "homes/create-or-update-home-form";
 
 
-    public HomeController(HomesService homesService, OwnerService ownerService, PlanTypeService planTypeService) {
+    public HomeController(HomesService homesService, CustomerService customerService, PlanTypeService planTypeService) {
         this.homesService = homesService;
-        this.ownerService = ownerService;
+        this.customerService = customerService;
         this.planTypeService = planTypeService;
     }
 
@@ -58,7 +58,7 @@ public class HomeController {
 
     @ModelAttribute("customer")
     public Customer findOwner(@PathVariable("ownerId") Long ownerId) {
-        return ownerService.findById(ownerId);
+        return customerService.findById(ownerId);
     }
 
     @InitBinder("customer")

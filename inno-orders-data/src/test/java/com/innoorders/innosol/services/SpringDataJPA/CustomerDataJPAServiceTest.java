@@ -1,7 +1,7 @@
 package com.innoorders.innosol.services.SpringDataJPA;
 
 import com.innoorders.innosol.models.Customer;
-import com.innoorders.innosol.repos.OwnerRepo;
+import com.innoorders.innosol.repos.CustomerRepo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,11 +25,11 @@ public class CustomerDataJPAServiceTest {
 
     //Mocks
     @Mock
-    OwnerRepo ownerRepo;
+    CustomerRepo customerRepo;
 
 
     //Concrete
-    OwnerDataJPAService ownerDataJPAService;
+    CustomerDataJPAService ownerDataJPAService;
     Customer customer;
     private final String lastName = "returned last name";
 
@@ -38,7 +38,7 @@ public class CustomerDataJPAServiceTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        ownerDataJPAService = new OwnerDataJPAService(ownerRepo);
+        ownerDataJPAService = new CustomerDataJPAService(customerRepo);
         customer = new Customer();
         customer.setId(2L);
         customer.setTelephone("12344556");
@@ -52,13 +52,13 @@ public class CustomerDataJPAServiceTest {
     @Test
     public void findByLastName() {
         //add
-        when(ownerRepo.findByLastName(any())).thenReturn(customer);
+        when(customerRepo.findByLastName(any())).thenReturn(customer);
 
         //actuate
         Customer customerUnderTest = ownerDataJPAService.findByLastName(lastName);
         //assert
         assertEquals(lastName, customerUnderTest.getLastName());
-        verify(ownerRepo, times(1)).findByLastName(lastName);
+        verify(customerRepo, times(1)).findByLastName(lastName);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class CustomerDataJPAServiceTest {
         //arrange
         Set<Customer> customerSet = new HashSet<>();
         customerSet.add(customer);
-        when(ownerRepo.findAll()).thenReturn(customerSet);
+        when(customerRepo.findAll()).thenReturn(customerSet);
 
         //act
        Set<Customer> customerSetTest =  ownerDataJPAService.findAll();
@@ -79,7 +79,7 @@ public class CustomerDataJPAServiceTest {
     @Test
     public void findById() {
         //arrange
-        when(ownerRepo.findById(anyLong())).thenReturn(Optional.of(customer));
+        when(customerRepo.findById(anyLong())).thenReturn(Optional.of(customer));
         //act
         Customer customerTest = ownerDataJPAService.findById(customer.getId());
         //assert
@@ -90,7 +90,7 @@ public class CustomerDataJPAServiceTest {
     @Test
     public void save() {
         //arrange
-        when(ownerRepo.save(any())).thenReturn(customer);
+        when(customerRepo.save(any())).thenReturn(customer);
         //act
         Customer savedCustomer = ownerDataJPAService.save(customer);
         //assert
@@ -102,7 +102,7 @@ public class CustomerDataJPAServiceTest {
         //act
         ownerDataJPAService.delete(customer);
         //assert
-        verify(ownerRepo, times(1)).delete(any());
+        verify(customerRepo, times(1)).delete(any());
     }
 
     @Test
@@ -110,6 +110,6 @@ public class CustomerDataJPAServiceTest {
         //act
         ownerDataJPAService.deleteById(anyLong());
         //assert
-        verify(ownerRepo, times(1)).deleteById(any());
+        verify(customerRepo, times(1)).deleteById(any());
     }
 }

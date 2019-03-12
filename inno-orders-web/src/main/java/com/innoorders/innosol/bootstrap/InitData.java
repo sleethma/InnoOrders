@@ -16,15 +16,15 @@ import java.time.LocalDate;
 @Profile({"default", "H2SpringDataJPA"})
 public class InitData implements CommandLineRunner {
 
-    private OwnerService ownerService;
+    private CustomerService customerService;
     private ContractorService contractorService;
     private PlanTypeService planTypeService;
     private SpecialtyService specialtyService;
     private RepairRequestService repairRequestService;
 
-    public InitData(OwnerService ownerService, ContractorService contractorService, PlanTypeService planTypeService,
+    public InitData(CustomerService customerService, ContractorService contractorService, PlanTypeService planTypeService,
                     SpecialtyService specialtyService, RepairRequestService repairRequestService) {
-        this.ownerService = ownerService;
+        this.customerService = customerService;
         this.contractorService = contractorService;
         this.planTypeService = planTypeService;
         this.specialtyService = specialtyService;
@@ -35,7 +35,7 @@ public class InitData implements CommandLineRunner {
     //will be called immediately after start-up
     @Override
     public void run(String... args) throws Exception {
-        if(ownerService.findAll().size() == 0)
+        if(customerService.findAll().size() == 0)
         loadData();
     }
 
@@ -76,7 +76,7 @@ public class InitData implements CommandLineRunner {
         testOwner1Home.setResidentFirstName("George");
         testOwner1Home.setResidentLastName("Slimter");
         testCustomer1.getHomes().add(testOwner1Home);
-        ownerService.save(testCustomer1);
+        customerService.save(testCustomer1);
 
 
         //Repair Services
@@ -102,13 +102,13 @@ public class InitData implements CommandLineRunner {
         dummyOwner2Home.setResidentFirstName("Rachel");
         dummyOwner2Home.setResidentLastName("Biggs");
         dummyCustomer2.getHomes().add(dummyOwner2Home);
-        ownerService.save(dummyCustomer2);
+        customerService.save(dummyCustomer2);
 
 
         Customer dummyCustomer3 = new Customer();
         dummyCustomer3.setFirstName("FirstName3");
         dummyCustomer3.setLastName("LastName3");
-        ownerService.save(dummyCustomer3);
+        customerService.save(dummyCustomer3);
 
         System.out.println("Loaded Owners");
 

@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.innoorders.innosol.controllers.CustomerControllerTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.651 s <<< FAILURE! - in com.innoorders.innosol.controllers.CustomerControllerTest
+showOwner(com.innoorders.innosol.controllers.CustomerControllerTest)  Time elapsed: 1.882 s  <<< FAILURE!
+java.lang.AssertionError: View name expected:<customers/ownerDetails> but was:<customers/customerDetails>
+	at com.innoorders.innosol.controllers.CustomerControllerTest.showOwner(CustomerControllerTest.java:69)
+

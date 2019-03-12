@@ -1,4 +1,3 @@
-com\innoorders\innosol\controllers\OwnersController.class
 com\innoorders\innosol\controllers\IndexController.class
 com\innoorders\innosol\InnoOrdersApplication.class
 com\innoorders\innosol\formatters\PlanTypeFormatter.class
@@ -6,5 +5,6 @@ com\innoorders\innosol\controllers\HomeController.class
 com\innoorders\innosol\controllers\ContractorController.class
 com\innoorders\innosol\bootstrap\InitData.class
 com\innoorders\innosol\controllers\RepairController.class
+com\innoorders\innosol\controllers\CustomerController.class
 com\innoorders\innosol\controllers\RepairController$1.class
 com\innoorders\innosol\controllers\HomeController$1.class

@@ -3,7 +3,7 @@ package com.innoorders.innosol.services.map;
 import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.Home;
 import com.innoorders.innosol.services.HomesService;
-import com.innoorders.innosol.services.OwnerService;
+import com.innoorders.innosol.services.CustomerService;
 import com.innoorders.innosol.services.PlanTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
-public class OwnerServiceMap extends AbstractMapService<Customer, Long> implements OwnerService {
+public class CustomerServiceMap extends AbstractMapService<Customer, Long> implements CustomerService {
 
     private final HomesService homeService;
     private final PlanTypeService planTypeService;
 
-    public OwnerServiceMap(HomesService homeService, PlanTypeService planTypeService) {
+    public CustomerServiceMap(HomesService homeService, PlanTypeService planTypeService) {
         this.homeService = homeService;
         this.planTypeService = planTypeService;
     }

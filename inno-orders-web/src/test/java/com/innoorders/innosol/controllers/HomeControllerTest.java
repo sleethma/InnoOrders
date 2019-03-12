@@ -4,7 +4,7 @@ import com.innoorders.innosol.models.Home;
 import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.PlanType;
 import com.innoorders.innosol.services.HomesService;
-import com.innoorders.innosol.services.OwnerService;
+import com.innoorders.innosol.services.CustomerService;
 import com.innoorders.innosol.services.PlanTypeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class HomeControllerTest {
     HomesService homesService;
 
     @Mock
-    OwnerService ownerService;
+    CustomerService customerService;
 
     @Mock
     PlanTypeService planTypeService;
@@ -68,7 +68,7 @@ public class HomeControllerTest {
 
     @Test
     public void initCreationFormTest() throws Exception {
-        when(ownerService.findById(anyLong())).thenReturn(customer);
+        when(customerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
 
         mockMvc.perform(get("/customers/1/homes/new"))
@@ -76,7 +76,7 @@ public class HomeControllerTest {
         .andExpect(view().name(VIEWS_HOMES_CREATE_OR_UPDATE_FORM))
         .andExpect(status().isOk());
 
-        verify(ownerService, times(1)).findById(anyLong());
+        verify(customerService, times(1)).findById(anyLong());
         verify(planTypeService, times(1)).findAll();
     }
 
@@ -85,7 +85,7 @@ public class HomeControllerTest {
         Home home = new Home();
         home.setId(1L);
 
-        when(ownerService.findById(anyLong())).thenReturn(customer);
+        when(customerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
 
         mockMvc.perform(post("/customers/1/homes/new"))
@@ -100,7 +100,7 @@ public class HomeControllerTest {
         Home home = new Home();
         home.setId(1L);
 
-        when(ownerService.findById(anyLong())).thenReturn(customer);
+        when(customerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
         when(homesService.findById(anyLong())).thenReturn(home);
 
@@ -108,7 +108,7 @@ public class HomeControllerTest {
                 .andExpect(model().attributeExists("home"))
         .andExpect(view().name(VIEWS_HOMES_CREATE_OR_UPDATE_FORM));
 
-        verify(ownerService, times(1)).findById(anyLong());
+        verify(customerService, times(1)).findById(anyLong());
         verify(planTypeService, times(1)).findAll();
         verify(homesService, times(1)).findById(anyLong());
     }
@@ -118,7 +118,7 @@ public class HomeControllerTest {
         Home home = new Home();
         home.setId(1L);
 
-        when(ownerService.findById(anyLong())).thenReturn(customer);
+        when(customerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
         when(homesService.findById(anyLong())).thenReturn(home);
 
@@ -126,7 +126,7 @@ public class HomeControllerTest {
                 .andExpect(status().is3xxRedirection())
         .andExpect(view().name("redirect:/customers/1"));
 
-        verify(ownerService, times(1)).findById(anyLong());
+        verify(customerService, times(1)).findById(anyLong());
         verify(planTypeService, times(1)).findAll();
         verify(homesService, times(1)).save(any());
     }

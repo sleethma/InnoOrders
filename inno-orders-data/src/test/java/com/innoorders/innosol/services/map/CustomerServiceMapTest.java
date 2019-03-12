@@ -39,7 +39,7 @@ public class CustomerServiceMapTest {
     @Mock
     Home home;
 
-    OwnerServiceMap ownerServiceMap;
+    CustomerServiceMap ownerServiceMap;
     Set<Home> homes;
     Long ownerId = 2L;
 
@@ -49,7 +49,7 @@ public class CustomerServiceMapTest {
         MockitoAnnotations.initMocks(this);
         Customer unmockedCustomer = new Customer();
         unmockedCustomer.setId(2L);
-        ownerServiceMap = new OwnerServiceMap(homeService, planTypeService);
+        ownerServiceMap = new CustomerServiceMap(homeService, planTypeService);
         homes = new HashSet<>();
         homes.add(home);
 
