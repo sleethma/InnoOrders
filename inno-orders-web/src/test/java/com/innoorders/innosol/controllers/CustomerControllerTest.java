@@ -25,14 +25,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @Slf4j
-public class OwnersControllerTest {
+public class CustomerControllerTest {
 
     //Mocks
     @Mock
     OwnerService ownerService;
 
     @InjectMocks
-    OwnersController ownersController;
+    CustomerController customerController;
 
     Set<Customer> customerSet;
     Customer customer = new Customer();
@@ -52,7 +52,7 @@ public class OwnersControllerTest {
         customerSet.add(customer);
 
         mockMvc = MockMvcBuilders
-                .standaloneSetup(ownersController)
+                .standaloneSetup(customerController)
                 .build();
     }
 
@@ -63,17 +63,17 @@ public class OwnersControllerTest {
         when(ownerService.findById(anyLong())).thenReturn(customer);
 
 
-        mockMvc.perform(get("/owners/2"))
+        mockMvc.perform(get("/customers/2"))
                 .andExpect(model().attributeExists("customer"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("owners/ownerDetails"));
+                .andExpect(view().name("customers/ownerDetails"));
 
     }
 
     @Test
     public void findOwners() throws Exception {
-        mockMvc.perform(get("/owners/find"))
-                .andExpect(view().name("owners/find"))
+        mockMvc.perform(get("/customers/find"))
+                .andExpect(view().name("customers/find"))
                 .andExpect(status().isOk());
 
         verifyZeroInteractions(ownerService);
@@ -91,8 +91,8 @@ public class OwnersControllerTest {
         when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
                 customerList);
 
-        mockMvc.perform(get("/owners"))
-                .andExpect(view().name("owners/owners-list"))
+        mockMvc.perform(get("/customers"))
+                .andExpect(view().name("customers/customers-list"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("selections"));
 
@@ -109,8 +109,8 @@ public class OwnersControllerTest {
         when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
                 customerList);
 
-        mockMvc.perform(get("/owners"))
-                .andExpect(view().name("redirect:/owners/1"))
+        mockMvc.perform(get("/customers"))
+                .andExpect(view().name("redirect:/customers/1"))
                 .andExpect(status().is3xxRedirection());
 
         verify(ownerService, times(1)).findAllByLastNameLike(anyString());
@@ -120,19 +120,19 @@ public class OwnersControllerTest {
     public void initUpdateOwnerForm() throws Exception{
         when(ownerService.findById(anyLong())).thenReturn(customer);
 
-        mockMvc.perform(get("/owners/"+ ownerId + "/edit"))
+        mockMvc.perform(get("/customers/"+ ownerId + "/edit"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("customer"))
-                .andExpect(view().name("owners/create-or-update-customer-form"));
+                .andExpect(view().name("customers/create-or-update-customer-form"));
 
     }
 
     @Test
     public void processUpdateOwnerForm() throws Exception{
         when(ownerService.save(any())).thenReturn(customer);
-        mockMvc.perform(post("/owners/" + ownerId + "/edit"))
+        mockMvc.perform(post("/customers/" + ownerId + "/edit"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/" + ownerId));
+                .andExpect(view().name("redirect:/customers/" + ownerId));
 
         verify(ownerService, times(1)).save(any());
     }
@@ -140,8 +140,8 @@ public class OwnersControllerTest {
 
     @Test
     public void initNewOwnerForm() throws Exception{
-        mockMvc.perform(get("/owners/new"))
-                .andExpect(view().name("owners/create-or-update-customer-form"))
+        mockMvc.perform(get("/customers/new"))
+                .andExpect(view().name("customers/create-or-update-customer-form"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("customer"));
 
@@ -151,10 +151,10 @@ public class OwnersControllerTest {
     public void processNewOwnerForm() throws Exception{
         when(ownerService.save(any())).thenReturn(customer);
 
-        mockMvc.perform(post("/owners/new"))
+        mockMvc.perform(post("/customers/new"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(model().attributeExists("customer"))
-                .andExpect(view().name("redirect:/owners/2"));
+                .andExpect(view().name("redirect:/customers/2"));
 
     }
 

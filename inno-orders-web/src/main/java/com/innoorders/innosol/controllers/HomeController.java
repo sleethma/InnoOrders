@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 @Slf4j
-@RequestMapping("/owners/{ownerId}")
+@RequestMapping("/customers/{ownerId}")
 @Controller
 public class HomeController {
 
@@ -87,7 +87,7 @@ public class HomeController {
             return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
         } else {
             homesService.save(home);
-            return "redirect:/owners/" + customer.getId();
+            return "redirect:/customers/" + customer.getId();
         }
     }
 
@@ -107,7 +107,7 @@ public class HomeController {
         } else {
             customer.getHomes().add(home);
             homesService.save(home);
-            return "redirect:/owners/" + customer.getId();
+            return "redirect:/customers/" + customer.getId();
         }
     }
 }

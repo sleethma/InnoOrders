@@ -42,7 +42,7 @@ public class RepairControllerTest {
     MockMvc mockMvc;
 
     private URI uri;
-    private UriTemplate uriTemplate = new UriTemplate("/owners/{ownerId}/homes/{homeId}/repairs/new");
+    private UriTemplate uriTemplate = new UriTemplate("/customers/{ownerId}/homes/{homeId}/repairs/new");
     private Map<String, String> uriVars;
     Long ownerId = 1L;
     Long homeId = 2L;
@@ -79,7 +79,7 @@ public class RepairControllerTest {
         .param("date", "2018-11-11" )
         .param("repairDescription","description again"))
                 .andExpect(status().is3xxRedirection())
-        .andExpect(view().name("redirect:/owners/{ownerId}"));
+        .andExpect(view().name("redirect:/customers/{ownerId}"));
 
 
     }

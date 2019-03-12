@@ -53,13 +53,13 @@ public class RepairController {
     }
 
     // Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-    @GetMapping("/owners/{ownerId}/homes/{homeId}/repairs/new")
+    @GetMapping("/customers/{ownerId}/homes/{homeId}/repairs/new")
     public String initNewVisitForm(@PathVariable Long homeId, Model model) {
         return CREATE_OR_UPDATE_REPAIR_VIEW;
     }
 
     // Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
-    @PostMapping("/owners/{ownerId}/homes/{homeId}/repairs/new")
+    @PostMapping("/customers/{ownerId}/homes/{homeId}/repairs/new")
     public String processNewRepairForm(@Valid RepairRequest repairRequest, BindingResult result) {
         if (result.hasErrors()) {
             return CREATE_OR_UPDATE_REPAIR_VIEW;
@@ -68,7 +68,7 @@ public class RepairController {
             String testRepair = repairRequest.getRepairDescription();
 
             repairRequestService.save(repairRequest);
-            return "redirect:/owners/{ownerId}";
+            return "redirect:/customers/{ownerId}";
         }
     }
 

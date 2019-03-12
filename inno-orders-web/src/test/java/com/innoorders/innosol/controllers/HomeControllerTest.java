@@ -71,7 +71,7 @@ public class HomeControllerTest {
         when(ownerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
 
-        mockMvc.perform(get("/owners/1/homes/new"))
+        mockMvc.perform(get("/customers/1/homes/new"))
                 .andExpect(model().attributeExists("home"))
         .andExpect(view().name(VIEWS_HOMES_CREATE_OR_UPDATE_FORM))
         .andExpect(status().isOk());
@@ -88,9 +88,9 @@ public class HomeControllerTest {
         when(ownerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
 
-        mockMvc.perform(post("/owners/1/homes/new"))
+        mockMvc.perform(post("/customers/1/homes/new"))
                 .andExpect(status().is3xxRedirection())
-        .andExpect(view().name("redirect:/owners/1"));
+        .andExpect(view().name("redirect:/customers/1"));
 
         verify(homesService).save(any());
     }
@@ -104,7 +104,7 @@ public class HomeControllerTest {
         when(planTypeService.findAll()).thenReturn(planTypes);
         when(homesService.findById(anyLong())).thenReturn(home);
 
-        mockMvc.perform(get("/owners/1/homes/1/edit"))
+        mockMvc.perform(get("/customers/1/homes/1/edit"))
                 .andExpect(model().attributeExists("home"))
         .andExpect(view().name(VIEWS_HOMES_CREATE_OR_UPDATE_FORM));
 
@@ -122,9 +122,9 @@ public class HomeControllerTest {
         when(planTypeService.findAll()).thenReturn(planTypes);
         when(homesService.findById(anyLong())).thenReturn(home);
 
-        mockMvc.perform(post("/owners/1/homes/1/edit"))
+        mockMvc.perform(post("/customers/1/homes/1/edit"))
                 .andExpect(status().is3xxRedirection())
-        .andExpect(view().name("redirect:/owners/1"));
+        .andExpect(view().name("redirect:/customers/1"));
 
         verify(ownerService, times(1)).findById(anyLong());
         verify(planTypeService, times(1)).findAll();

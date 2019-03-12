@@ -14,11 +14,11 @@ import java.util.List;
 
 @Slf4j
 @Controller
-public class OwnersController {
+public class CustomerController {
 
     private final OwnerService ownerService;
 
-    public OwnersController(OwnerService ownerService) {
+    public CustomerController(OwnerService ownerService) {
         this.ownerService = ownerService;
     }
 
@@ -31,65 +31,65 @@ public class OwnersController {
     public String findOwners(Model model) {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
-        return "owners/find";
+        return "customers/find";
     }
 
-    @GetMapping("/customers/{ownerId}")
-    public String showOwner(@PathVariable Long ownerId, Model model) {
-        model.addAttribute("customer", ownerService.findById(ownerId));
-        return "owners/ownerDetails";
+    @GetMapping("/customers/{customerId}")
+    public String showOwner(@PathVariable Long customerId, Model model) {
+        model.addAttribute("customer", ownerService.findById(customerId));
+        return "customers/customerDetails";
     }
 
     @GetMapping("/customers")
     public String processFindForm(Customer customer, Model model) {
-        //allow parameterless GET request for /owners to return all records
+        //allow parameterless GET request for /customers to return all records
         if (customer.getLastName() == null) {
             customer.setLastName("");
         }
 
         List<Customer> results = ownerService.findAllByLastNameLike("%" + customer.getLastName().trim() + "%");
         if (results.isEmpty()) {
-            return "owners/find";
+            return "customers/find";
         } else if (results.size() == 1) {
             customer = results.get(0);
-            return "redirect:/owners/" + customer.getId();
+            return "redirect:/customers/" + customer.getId();
         } else {
             model.addAttribute("selections", results);
-            return "owners/owners-list";
+            return "customers/customers-list";
         }
     }
 
-    @GetMapping("/owners/{ownerId}/edit")
+    @GetMapping("/customers/{ownerId}/edit")
     public String createOrUpdateUserForm(Model model, @PathVariable Long ownerId) {
         model.addAttribute("customer", ownerService.findById(ownerId));
 
-        return "owners/create-or-update-customer-form";
+        return "customers/create-or-update-customer-form";
     }
 
-    @PostMapping("/owners/{ownerId}/edit")
+    @PostMapping("/customers/{ownerId}/edit")
     public String processUpdateOwnerForm(@Valid Customer customer,
                                          @PathVariable Long ownerId,
                                          BindingResult result) {
         if(result.hasErrors()){
-            return "owners/create-or-update-customer-form";
+            return "customers/create-or-update-customer-form";
         }
         customer.setId(ownerId);
         Customer savedCustomer = ownerService.save(customer);
-        return "redirect:/owners/" + savedCustomer.getId();
+        return "redirect:/customers/" + savedCustomer.getId();
     }
 
-    @GetMapping("/owners/new")
+    @GetMapping("/customers/new")
     public String createNewOwnerForm(Model model){
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
-        return "owners/create-or-update-customer-form";
+        return "customers/create-or-update-customer-form";
     }
 
-    @PostMapping("/owners/new")
+    @PostMapping("/customers/new")
     public String processNewOwnerForm(@Valid Customer customer, BindingResult result){
-        if(result.hasErrors())return "owners/create-or-update-customer-form";
+        if(result.hasErrors())return "customers/create-or-update-customer-form";
         Customer savedCustomer = ownerService.save(customer);
-        return "redirect:/owners/" + savedCustomer.getId();
+        return "redirect:/customers/" + savedCustomer.getId();
     }
 
 
