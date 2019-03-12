@@ -1,7 +1,7 @@
 package com.innoorders.innosol.controllers;
 
 import com.innoorders.innosol.models.Home;
-import com.innoorders.innosol.models.Owner;
+import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.PlanType;
 import com.innoorders.innosol.services.HomesService;
 import com.innoorders.innosol.services.OwnerService;
@@ -40,7 +40,7 @@ public class HomeControllerTest {
     PlanTypeService planTypeService;
 
     MockMvc mockMvc;
-    Owner owner;
+    Customer customer;
     Set<PlanType> planTypes;
 
     @InjectMocks
@@ -55,8 +55,8 @@ public class HomeControllerTest {
 
         planTypes = new HashSet<>();
 
-         owner = new Owner();
-         owner.setId(1L);
+         customer = new Customer();
+         customer.setId(1L);
          PlanType planType1 = new PlanType();
          planType1.setName("Three Bedroom");
         PlanType planType2 = new PlanType();
@@ -68,7 +68,7 @@ public class HomeControllerTest {
 
     @Test
     public void initCreationFormTest() throws Exception {
-        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(ownerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
 
         mockMvc.perform(get("/owners/1/homes/new"))
@@ -85,7 +85,7 @@ public class HomeControllerTest {
         Home home = new Home();
         home.setId(1L);
 
-        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(ownerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
 
         mockMvc.perform(post("/owners/1/homes/new"))
@@ -100,7 +100,7 @@ public class HomeControllerTest {
         Home home = new Home();
         home.setId(1L);
 
-        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(ownerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
         when(homesService.findById(anyLong())).thenReturn(home);
 
@@ -118,7 +118,7 @@ public class HomeControllerTest {
         Home home = new Home();
         home.setId(1L);
 
-        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(ownerService.findById(anyLong())).thenReturn(customer);
         when(planTypeService.findAll()).thenReturn(planTypes);
         when(homesService.findById(anyLong())).thenReturn(home);
 

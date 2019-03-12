@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+      th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
 
 <body>
 
@@ -9,7 +9,7 @@
 <h2>Owner Information</h2>
 
 
-<table class="table table-striped" th:object="${owner}">
+<table class="table table-striped" th:object="${customer}">
     <tr>
         <th>Name</th>
         <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
@@ -28,9 +28,9 @@
     </tr>
 </table>
 
-<a th:href="@{{id}/edit(id=${owner.id})}" class="btn btn-default">Edit
+<a th:href="@{{id}/edit(id=${customer.id})}" class="btn btn-default">Edit
     Owner</a>
-<a th:href="@{{id}/homes/new(id=${owner.id})}" class="btn btn-default">Add
+<a th:href="@{{id}/homes/new(id=${customer.id})}" class="btn btn-default">Add
     New Home</a>
 
 <br />
@@ -40,11 +40,11 @@
 
 <table class="table table-striped">
 
-    <tr th:each="home : ${owner.homes}">
+    <tr th:each="home : ${customer.homes}">
         <td valign="top">
             <dl class="dl-horizontal">
                 <dt>Name</dt>
-                <dd th:text="${owner.firstName}" /></dd>
+                <dd th:text="${customer.firstName}" /></dd>
                 <dt>Build Date</dt>
                 <dd
                         th:text="${#temporals.format(home.buildDate, 'yyyy-MM-dd')}" /></dd>
@@ -67,10 +67,10 @@
                 </tr>
                 <tr>
                     <td><a
-                            th:href="@{{ownerId}/homes/{homeId}/edit(ownerId=${owner.id},homeId=${home.id})}">Edit
+                            th:href="@{{ownerId}/homes/{homeId}/edit(ownerId=${customer.id},homeId=${home.id})}">Edit
                         Home</a></td>
                     <td><a
-                            th:href="@{{ownerId}/homes/{homeId}/repairs/new(ownerId=${owner.id},homeId=${home.id})}">Add
+                            th:href="@{{ownerId}/homes/{homeId}/repairs/new(ownerId=${customer.id},homeId=${home.id})}">Add
                         Repair</a></td>
                 </tr>
             </table>

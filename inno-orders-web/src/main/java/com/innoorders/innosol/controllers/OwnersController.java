@@ -1,6 +1,6 @@
 package com.innoorders.innosol.controllers;
 
-import com.innoorders.innosol.models.Owner;
+import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.services.OwnerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,30 +29,30 @@ public class OwnersController {
 
     @GetMapping("owners/find")
     public String findOwners(Model model) {
-        Owner owner = new Owner();
-        model.addAttribute("owner", owner);
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
         return "owners/find";
     }
 
     @GetMapping("/owners/{ownerId}")
     public String showOwner(@PathVariable Long ownerId, Model model) {
-        model.addAttribute("owner", ownerService.findById(ownerId));
+        model.addAttribute("customer", ownerService.findById(ownerId));
         return "owners/ownerDetails";
     }
 
     @GetMapping("/owners")
-    public String processFindForm(Owner owner, Model model) {
+    public String processFindForm(Customer customer, Model model) {
         //allow parameterless GET request for /owners to return all records
-        if (owner.getLastName() == null) {
-            owner.setLastName("");
+        if (customer.getLastName() == null) {
+            customer.setLastName("");
         }
 
-        List<Owner> results = ownerService.findAllByLastNameLike("%" + owner.getLastName().trim() + "%");
+        List<Customer> results = ownerService.findAllByLastNameLike("%" + customer.getLastName().trim() + "%");
         if (results.isEmpty()) {
             return "owners/find";
         } else if (results.size() == 1) {
-            owner = results.get(0);
-            return "redirect:/owners/" + owner.getId();
+            customer = results.get(0);
+            return "redirect:/owners/" + customer.getId();
         } else {
             model.addAttribute("selections", results);
             return "owners/owners-list";
@@ -61,35 +61,35 @@ public class OwnersController {
 
     @GetMapping("/owners/{ownerId}/edit")
     public String createOrUpdateUserForm(Model model, @PathVariable Long ownerId) {
-        model.addAttribute("owner", ownerService.findById(ownerId));
+        model.addAttribute("customer", ownerService.findById(ownerId));
 
-        return "owners/create-or-update-owner-form";
+        return "owners/create-or-update-customer-form";
     }
 
     @PostMapping("/owners/{ownerId}/edit")
-    public String processUpdateOwnerForm(@Valid Owner owner,
+    public String processUpdateOwnerForm(@Valid Customer customer,
                                          @PathVariable Long ownerId,
                                          BindingResult result) {
         if(result.hasErrors()){
-            return "owners/create-or-update-owner-form";
+            return "owners/create-or-update-customer-form";
         }
-        owner.setId(ownerId);
-        Owner savedOwner = ownerService.save(owner);
-        return "redirect:/owners/" + savedOwner.getId();
+        customer.setId(ownerId);
+        Customer savedCustomer = ownerService.save(customer);
+        return "redirect:/owners/" + savedCustomer.getId();
     }
 
     @GetMapping("/owners/new")
     public String createNewOwnerForm(Model model){
-        Owner owner = new Owner();
-        model.addAttribute("owner", owner);
-        return "owners/create-or-update-owner-form";
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "owners/create-or-update-customer-form";
     }
 
     @PostMapping("/owners/new")
-    public String processNewOwnerForm(@Valid Owner owner, BindingResult result){
-        if(result.hasErrors())return "owners/create-or-update-owner-form";
-        Owner savedOwner = ownerService.save(owner);
-        return "redirect:/owners/" + savedOwner.getId();
+    public String processNewOwnerForm(@Valid Customer customer, BindingResult result){
+        if(result.hasErrors())return "owners/create-or-update-customer-form";
+        Customer savedCustomer = ownerService.save(customer);
+        return "redirect:/owners/" + savedCustomer.getId();
     }
 
 

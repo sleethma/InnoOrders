@@ -1,7 +1,7 @@
 package com.innoorders.innosol.services.map;
 
+import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.Home;
-import com.innoorders.innosol.models.Owner;
 import com.innoorders.innosol.services.HomesService;
 import com.innoorders.innosol.services.OwnerService;
 import com.innoorders.innosol.services.PlanTypeService;
@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+public class OwnerServiceMap extends AbstractMapService<Customer, Long> implements OwnerService {
 
     private final HomesService homeService;
     private final PlanTypeService planTypeService;
@@ -24,7 +24,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
-    public Set<Owner> findAll() {
+    public Set<Customer> findAll() {
         return super.findAll();
     }
 
@@ -34,7 +34,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
-    public Owner save(Owner object) {
+    public Customer save(Customer object) {
         if (object != null) {
             object.getHomes().forEach(home -> {
                 if (home.getPlanType() != null) {
@@ -55,22 +55,22 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
-    public void delete(Owner object) {
+    public void delete(Customer object) {
     super.deleteByObject(object);
     }
 
     @Override
-    public Owner findById(Long id) {
+    public Customer findById(Long id) {
         return super.findById(id);
     }
 
     @Override
-    public Owner findByLastName(String lastName) {
+    public Customer findByLastName(String lastName) {
         return null;
     }
 
     @Override
-    public List<Owner> findAllByLastNameLike(String lastName) {
+    public List<Customer> findAllByLastNameLike(String lastName) {
        //todo implement this
         return null;
     }

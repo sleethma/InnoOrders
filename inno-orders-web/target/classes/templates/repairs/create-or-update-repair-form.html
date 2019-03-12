@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+      th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
 
 <body>
 
@@ -24,7 +24,7 @@
                 th:text="${#temporals.format(home.buildDate, 'yyyy-MM-dd')}" /></td>
         <td th:text="${home.planType}" /></td>
         <td
-                th:text="${home.owner?.firstName + ' ' + home.owner?.lastName}" /></td>
+                th:text="${home.customer?.firstName + ' ' + home.customer?.lastName}" /></td>
     </tr>
 </table>
 

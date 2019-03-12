@@ -1,6 +1,6 @@
 package com.innoorders.innosol.services.SpringDataJPA;
 
-import com.innoorders.innosol.models.Owner;
+import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.repos.OwnerRepo;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-public class OwnerDataJPAServiceTest {
+public class CustomerDataJPAServiceTest {
 
     //Mocks
     @Mock
@@ -30,7 +30,7 @@ public class OwnerDataJPAServiceTest {
 
     //Concrete
     OwnerDataJPAService ownerDataJPAService;
-    Owner owner;
+    Customer customer;
     private final String lastName = "returned last name";
 
 
@@ -39,68 +39,68 @@ public class OwnerDataJPAServiceTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         ownerDataJPAService = new OwnerDataJPAService(ownerRepo);
-        owner = new Owner();
-        owner.setId(2L);
-        owner.setTelephone("12344556");
-        owner.setCity("Dallas");
-        owner.setAddress("address is...");
-        owner.setFirstName("George");
-        owner.setLastName(lastName);
+        customer = new Customer();
+        customer.setId(2L);
+        customer.setTelephone("12344556");
+        customer.setCity("Dallas");
+        customer.setAddress("address is...");
+        customer.setFirstName("George");
+        customer.setLastName(lastName);
 
     }
 
     @Test
     public void findByLastName() {
         //add
-        when(ownerRepo.findByLastName(any())).thenReturn(owner);
+        when(ownerRepo.findByLastName(any())).thenReturn(customer);
 
         //actuate
-        Owner ownerUnderTest = ownerDataJPAService.findByLastName(lastName);
+        Customer customerUnderTest = ownerDataJPAService.findByLastName(lastName);
         //assert
-        assertEquals(lastName, ownerUnderTest.getLastName());
+        assertEquals(lastName, customerUnderTest.getLastName());
         verify(ownerRepo, times(1)).findByLastName(lastName);
     }
 
     @Test
     public void findAll() {
         //arrange
-        Set<Owner> ownerSet = new HashSet<>();
-        ownerSet.add(owner);
-        when(ownerRepo.findAll()).thenReturn(ownerSet);
+        Set<Customer> customerSet = new HashSet<>();
+        customerSet.add(customer);
+        when(ownerRepo.findAll()).thenReturn(customerSet);
 
         //act
-       Set<Owner> ownerSetTest =  ownerDataJPAService.findAll();
+       Set<Customer> customerSetTest =  ownerDataJPAService.findAll();
 
        //assert
-        assertEquals(true, ownerSetTest.contains(owner));
+        assertEquals(true, customerSetTest.contains(customer));
 
     }
 
     @Test
     public void findById() {
         //arrange
-        when(ownerRepo.findById(anyLong())).thenReturn(Optional.of(owner));
+        when(ownerRepo.findById(anyLong())).thenReturn(Optional.of(customer));
         //act
-        Owner ownerTest = ownerDataJPAService.findById(owner.getId());
+        Customer customerTest = ownerDataJPAService.findById(customer.getId());
         //assert
-        assertNotNull(ownerTest);
-        assertEquals(owner.getId(), ownerTest.getId());
+        assertNotNull(customerTest);
+        assertEquals(customer.getId(), customerTest.getId());
     }
 
     @Test
     public void save() {
         //arrange
-        when(ownerRepo.save(any())).thenReturn(owner);
+        when(ownerRepo.save(any())).thenReturn(customer);
         //act
-        Owner savedOwner = ownerDataJPAService.save(owner);
+        Customer savedCustomer = ownerDataJPAService.save(customer);
         //assert
-        assertEquals(owner, savedOwner);
+        assertEquals(customer, savedCustomer);
     }
 
     @Test
     public void delete() {
         //act
-        ownerDataJPAService.delete(owner);
+        ownerDataJPAService.delete(customer);
         //assert
         verify(ownerRepo, times(1)).delete(any());
     }

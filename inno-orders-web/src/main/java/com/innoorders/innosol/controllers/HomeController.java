@@ -1,7 +1,7 @@
 package com.innoorders.innosol.controllers;
 
+import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.Home;
-import com.innoorders.innosol.models.Owner;
 import com.innoorders.innosol.models.PlanType;
 import com.innoorders.innosol.services.HomesService;
 import com.innoorders.innosol.services.OwnerService;
@@ -56,38 +56,38 @@ public class HomeController {
         return planTypeService.findAll();
     }
 
-    @ModelAttribute("owner")
-    public Owner findOwner(@PathVariable("ownerId") Long ownerId) {
+    @ModelAttribute("customer")
+    public Customer findOwner(@PathVariable("ownerId") Long ownerId) {
         return ownerService.findById(ownerId);
     }
 
-    @InitBinder("owner")
+    @InitBinder("customer")
     public void initOwnerBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
     }
 
     @GetMapping("/homes/new")
-    public String initCreationForm(Owner owner, Model model) {
+    public String initCreationForm(Customer customer, Model model) {
         Home home = new Home();
-        owner.getHomes().add(home);
-        home.setOwner(owner);
+        customer.getHomes().add(home);
+        home.setCustomer(customer);
         model.addAttribute("home", home);
         return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
     }
 
     @PostMapping("/homes/new")
-    public String processCreationForm(Owner owner, @Valid Home home, BindingResult result, Model model) {
+    public String processCreationForm(Customer customer, @Valid Home home, BindingResult result, Model model) {
         if (StringUtils.hasLength(home.getResidentFirstName()) && StringUtils.hasLength(home.getResidentLastName())
-                && home.isNew() && owner.getHome(home.getResidentFirstName(), home.getResidentLastName(), true) != null) {
+                && home.isNew() && customer.getHome(home.getResidentFirstName(), home.getResidentLastName(), true) != null) {
             result.rejectValue("name", "duplicate", "already exists");
         }
-        owner.getHomes().add(home);
+        customer.getHomes().add(home);
         if (result.hasErrors()) {
             model.addAttribute("home", home);
             return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
         } else {
             homesService.save(home);
-            return "redirect:/owners/" + owner.getId();
+            return "redirect:/owners/" + customer.getId();
         }
     }
 
@@ -98,16 +98,16 @@ public class HomeController {
     }
 
     @PostMapping("/homes/{homeId}/edit")
-    public String processUpdateForm(Owner owner, @Valid Home home, BindingResult result, Model model) {
+    public String processUpdateForm(Customer customer, @Valid Home home, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            home.setOwner(owner);
+            home.setCustomer(customer);
             model.addAttribute("home", home);
             return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
         } else {
-            owner.getHomes().add(home);
+            customer.getHomes().add(home);
             homesService.save(home);
-            return "redirect:/owners/" + owner.getId();
+            return "redirect:/owners/" + customer.getId();
         }
     }
 }

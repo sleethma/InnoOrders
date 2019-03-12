@@ -1,12 +1,12 @@
 package com.innoorders.innosol.repos;
 
-import com.innoorders.innosol.models.Owner;
+import com.innoorders.innosol.models.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface OwnerRepo extends CrudRepository<Owner, Long> {
+public interface OwnerRepo extends CrudRepository<Customer, Long> {
 
-    Owner findByLastName(String lastName);
-    List<Owner> findAllByLastNameLike(String lastName);
+    Customer findByLastName(String lastName);
+    List<Customer> findAllByLastNameLike(String lastName);
 }

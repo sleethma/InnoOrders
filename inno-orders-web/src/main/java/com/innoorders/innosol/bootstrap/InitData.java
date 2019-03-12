@@ -61,22 +61,22 @@ public class InitData implements CommandLineRunner {
         fourBedroom.setName("fourBedroom");
         PlanType savedFourPlanType = planTypeService.save(fourBedroom);
 
-        Owner testOwner1 = new Owner();
-        testOwner1.setFirstName("FirstName1");
-        testOwner1.setLastName("LastName1");
-        testOwner1.setAddress("123 Sillyville");
-        testOwner1.setCity("St. Louis");
-        testOwner1.setTelephone("901-222-7676");
+        Customer testCustomer1 = new Customer();
+        testCustomer1.setFirstName("FirstName1");
+        testCustomer1.setLastName("LastName1");
+        testCustomer1.setAddress("123 Sillyville");
+        testCustomer1.setCity("St. Louis");
+        testCustomer1.setTelephone("901-222-7676");
 
         Home testOwner1Home = new Home();
-        testOwner1Home.setOwner(testOwner1);
+        testOwner1Home.setCustomer(testCustomer1);
         testOwner1Home.setPlanType(savedThreePlanType);
         testOwner1Home.setBuildDate(LocalDate.now());
         testOwner1Home.setPropertyAddress("374 Fountain Crest");
         testOwner1Home.setResidentFirstName("George");
         testOwner1Home.setResidentLastName("Slimter");
-        testOwner1.getHomes().add(testOwner1Home);
-        ownerService.save(testOwner1);
+        testCustomer1.getHomes().add(testOwner1Home);
+        ownerService.save(testCustomer1);
 
 
         //Repair Services
@@ -87,28 +87,28 @@ public class InitData implements CommandLineRunner {
         repairRequestService.save(testOwner1HomeRepair);
 
 
-        Owner dummyOwner2 = new Owner();
-        dummyOwner2.setFirstName("FirstName2");
-        dummyOwner2.setLastName("LastName2");
-        dummyOwner2.setAddress("321 Hanson St.");
-        dummyOwner2.setCity("Detroit");
-        dummyOwner2.setTelephone("945-666-3444");
+        Customer dummyCustomer2 = new Customer();
+        dummyCustomer2.setFirstName("FirstName2");
+        dummyCustomer2.setLastName("LastName2");
+        dummyCustomer2.setAddress("321 Hanson St.");
+        dummyCustomer2.setCity("Detroit");
+        dummyCustomer2.setTelephone("945-666-3444");
 
         Home dummyOwner2Home = new Home();
-        dummyOwner2Home.setOwner(dummyOwner2);
+        dummyOwner2Home.setCustomer(dummyCustomer2);
         dummyOwner2Home.setPlanType(savedFourPlanType);
         dummyOwner2Home.setBuildDate(LocalDate.now());
         dummyOwner2Home.setPropertyAddress("764 Rightway Cr.");
         dummyOwner2Home.setResidentFirstName("Rachel");
         dummyOwner2Home.setResidentLastName("Biggs");
-        dummyOwner2.getHomes().add(dummyOwner2Home);
-        ownerService.save(dummyOwner2);
+        dummyCustomer2.getHomes().add(dummyOwner2Home);
+        ownerService.save(dummyCustomer2);
 
 
-        Owner dummyOwner3 = new Owner();
-        dummyOwner3.setFirstName("FirstName3");
-        dummyOwner3.setLastName("LastName3");
-        ownerService.save(dummyOwner3);
+        Customer dummyCustomer3 = new Customer();
+        dummyCustomer3.setFirstName("FirstName3");
+        dummyCustomer3.setLastName("LastName3");
+        ownerService.save(dummyCustomer3);
 
         System.out.println("Loaded Owners");
 

@@ -1,6 +1,6 @@
 package com.innoorders.innosol.services.SpringDataJPA;
 
-import com.innoorders.innosol.models.Owner;
+import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.repos.OwnerRepo;
 import com.innoorders.innosol.services.OwnerService;
 import org.springframework.context.annotation.Profile;
@@ -19,29 +19,29 @@ public class OwnerDataJPAService implements OwnerService {
     }
 
     @Override
-    public Owner findByLastName(String lastName) {
+    public Customer findByLastName(String lastName) {
         return ownerRepo.findByLastName(lastName);
     }
 
     @Override
-    public Set<Owner> findAll() {
-        Set<Owner> ownerSet = new HashSet<>();
-        ownerRepo.findAll().forEach(ownerSet :: add);
-        return ownerSet;
+    public Set<Customer> findAll() {
+        Set<Customer> customerSet = new HashSet<>();
+        ownerRepo.findAll().forEach(customerSet:: add);
+        return customerSet;
     }
 
     @Override
-    public Owner findById(Long id) {
+    public Customer findById(Long id) {
         return ownerRepo.findById(id).orElse(null);
     }
 
     @Override
-    public Owner save(Owner object) {
+    public Customer save(Customer object) {
         return ownerRepo.save(object);
     }
 
     @Override
-    public void delete(Owner object) {
+    public void delete(Customer object) {
     ownerRepo.delete(object);
     }
 
@@ -51,13 +51,13 @@ public class OwnerDataJPAService implements OwnerService {
     }
 
     @Override
-    public List<Owner> findAllByLastNameLike(String lastName) {
-        List<Owner> owners = new ArrayList<>();
+    public List<Customer> findAllByLastNameLike(String lastName) {
+        List<Customer> customers = new ArrayList<>();
         if(lastName.isEmpty()){
-            return owners;
+            return customers;
         }else{
-            owners = ownerRepo.findAllByLastNameLike(lastName);
-            return owners;
+            customers = ownerRepo.findAllByLastNameLike(lastName);
+            return customers;
         }
     }
 }

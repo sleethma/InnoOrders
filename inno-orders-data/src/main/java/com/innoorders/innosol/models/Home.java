@@ -22,7 +22,7 @@ public class Home extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    private Owner owner;
+    private Customer customer;
 
     @Column(name = "resident_first_name")
     private String residentFirstName;
@@ -47,7 +47,7 @@ public class Home extends BaseEntity{
         int result = super.hashCode();
         result = 31 * result + (planType != null ? planType.hashCode() : 0);
         result = 31 * result + (buildDate != null ? buildDate.hashCode() : 0);
-        result = 31 * result + (owner != null ? owner.hashCode() : 0);
+        result = 31 * result + (customer != null ? customer.hashCode() : 0);
         result = 31 * result + (residentFirstName != null ? residentFirstName.hashCode() : 0);
         result = 31 * result + (residentLastName != null ? residentLastName.hashCode() : 0);
         result = 31 * result + (propertyAddress != null ? propertyAddress.hashCode() : 0);

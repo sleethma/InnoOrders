@@ -11,7 +11,7 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"homes"})
 @Entity
 @Table(name = "owners")
-public class Owner extends Person  {
+public class Customer extends Person  {
 
     @Column(name = "address")
     private String address;
@@ -19,7 +19,7 @@ public class Owner extends Person  {
     private String telephone;
     @Column(name = "city")
     private String city;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Home> homes = new HashSet<>();
 
 
@@ -41,7 +41,7 @@ public class Owner extends Person  {
 
     @Override
     public String toString() {
-        return "Owner{" +
+        return "Customer{" +
                 "address='" + address + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", city='" + city + '\'' +

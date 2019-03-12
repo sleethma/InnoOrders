@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
 
 <body>
 
@@ -17,14 +17,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="owner : ${selections}">
+    <tr th:each="customer : ${selections}">
         <td>
-            <a th:href="@{/owners/__${owner.id}__}" th:text="${owner.firstName + ' ' + owner.lastName}"/></a>
+            <a th:href="@{/customers/__${customer.id}__}" th:text="${customer.firstName + ' ' + customer.lastName}"/></a>
         </td>
-        <td th:text="${owner.address}"/>
-        <td th:text="${owner.city}"/>
-        <td th:text="${owner.telephone}"/>
-        <td><span th:each="home : ${owner.homes}" th:text="${home.residentFirstName} "/></td>
+        <td th:text="${customer.address}"/>
+        <td th:text="${customer.city}"/>
+        <td th:text="${customer.telephone}"/>
+        <td><span th:each="home : ${customer.homes}" th:text="${home.residentFirstName} "/></td>
     </tr>
     </tbody>
 </table>

@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+      th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
 
 <body>
 
@@ -13,7 +13,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Owner</label>
             <div class="col-sm-10">
-                <span th:text="${home.owner?.firstName} + ' ' + ${home.owner?.lastName}" />
+                <span th:text="${home.customer?.firstName} + ' ' + ${home.customer?.lastName}" />
             </div>
         </div>
         <input
