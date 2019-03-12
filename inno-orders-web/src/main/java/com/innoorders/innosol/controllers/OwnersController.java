@@ -27,20 +27,20 @@ public class OwnersController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @GetMapping("owners/find")
+    @GetMapping("customers/find")
     public String findOwners(Model model) {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
         return "owners/find";
     }
 
-    @GetMapping("/owners/{ownerId}")
+    @GetMapping("/customers/{ownerId}")
     public String showOwner(@PathVariable Long ownerId, Model model) {
         model.addAttribute("customer", ownerService.findById(ownerId));
         return "owners/ownerDetails";
     }
 
-    @GetMapping("/owners")
+    @GetMapping("/customers")
     public String processFindForm(Customer customer, Model model) {
         //allow parameterless GET request for /owners to return all records
         if (customer.getLastName() == null) {

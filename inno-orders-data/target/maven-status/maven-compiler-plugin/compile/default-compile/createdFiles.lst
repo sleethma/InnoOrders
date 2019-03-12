@@ -23,8 +23,8 @@ com\innoorders\innosol\exceptions\NotFoundException.class
 com\innoorders\innosol\models\ContractorSpecialty.class
 com\innoorders\innosol\models\Contractor.class
 com\innoorders\innosol\services\map\SpecialtyMapService.class
+com\innoorders\innosol\models\Customer.class
 com\innoorders\innosol\services\SpringDataJPA\HomesDataJPAService.class
-com\innoorders\innosol\models\Owner.class
 com\innoorders\innosol\services\map\AbstractMapService.class
 com\innoorders\innosol\services\HomesService.class
 com\innoorders\innosol\services\map\ContractorServiceMap.class

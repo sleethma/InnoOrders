@@ -1,5 +1,6 @@
 com\innoorders\innosol\controllers\OwnersController.class
 com\innoorders\innosol\controllers\IndexController.class
+com\innoorders\innosol\InnoOrdersApplication.class
 com\innoorders\innosol\formatters\PlanTypeFormatter.class
 com\innoorders\innosol\controllers\HomeController.class
 com\innoorders\innosol\controllers\ContractorController.class

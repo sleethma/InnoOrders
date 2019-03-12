@@ -1,2 +1,2 @@
-com\innoorders\innosol\services\map\OwnerServiceMapTest.class
-com\innoorders\innosol\services\SpringDataJPA\OwnerDataJPAServiceTest.class
+com\innoorders\innosol\services\SpringDataJPA\CustomerDataJPAServiceTest.class
+com\innoorders\innosol\services\map\CustomerServiceMapTest.class
