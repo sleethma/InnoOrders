@@ -1,10 +1,135 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'customers')}">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
     <meta charset="UTF-8" >
-    <title>List of Customers</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>InnoSessions | Customers List</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+        <style>
+
+    :root{
+ --global-font:amita;
+ <!--&#45;&#45;primary:#ffffff;-->
+      <!--&#45;&#45;accent:#77C9D4;-->
+      <!--&#45;&#45;dark:#015249;-->
+      <!--&#45;&#45;muted:#A5A5AF;-->
+      <!--&#45;&#45;accent-bright:#57BC90;-->
+
+      --primary:#18121E;
+      --dark:#233237;
+      --muted:#984B43;
+      --accent:#EAC67A;
+}
+
+    @media only screen and (max-width: 1000px)  {
+  #powered-by{
+    display:none;
+  }
+}
+
+@media only screen and (max-width: 770px)  {
+  #jumbotron-jump{
+    margin-top:300px;
+  }
+}
+
+div p{
+  font-size:15px;
+}
+
+ul{
+  font-size:20px;
+}
+
+    .inn-vert-center{
+      margin:20px 0 0 30px;
+    }
+
+
+
+    h1{
+       font-family: var(--global-font)
+    }
+
+    .container{
+      background-color:var(--primary);
+    }
+
+    .jumbotron{
+      margin-top:70px;
+      background: linear-gradient(to right, var(--accent) 0%, var(--dark) 100%);
+      color:#ffffff;
+    }
+
+.navbar{
+  background-color:var(--dark);
+}
+
+.navbar-brand{
+  color:var(--accent);
+}
+
+.inn-nav-text{
+        color:var(--muted);
+    }
+    .inn-jumbotron-right{
+      position:relative; top:100px;
+    }
+
+    .inn-custom-text-stroke{
+       color: #99999;
+    }
+
+    .inn-panel-heading{
+      background-color:var(--muted);
+    }
+
+    .inn-accent-color{
+      background-color:var(--accent);
+    }
+
+    #footer{
+      background-color:var(--accent);
+    }
+
+
+
+    </style>
+
+    </head>
+
+
+    <body>
+    <div class="container">
+        <div>
+            <nav class="navbar  navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">InnoSessions</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
+                        <li><a class="inn-nav-text" href="#">Orders</a></li>
+                        <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
 
 <h2 th:text="'List Of Customers'">Customers List</h2>
 

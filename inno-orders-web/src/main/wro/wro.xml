@@ -4,3 +4,11 @@
     <css>/petclinic.less</css>
    </group>
 </groups>
+
+<!--todo: refactor above to below and incorporate .less-->
+<!--<groups xmlns="http://www.isdc.ro/wro">-->
+<!--<group name="inno-orders">-->
+    <!--<css>classpath:META-INF/resources/webjars/bootstrap/3.3.6/less/bootstrap.less</css>-->
+    <!--<css>/inno-orders.less</css>-->
+<!--</group>-->
+<!--</groups>-->
