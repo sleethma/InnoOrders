@@ -15,10 +15,10 @@ public class Order extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private PlanType planType;
+    private ProductType productType;
 
     @Column(name = "build_date")
-    private LocalDate buildDate;
+    private LocalDate purchaseDate;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -45,8 +45,8 @@ public class Order extends BaseEntity{
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (planType != null ? planType.hashCode() : 0);
-        result = 31 * result + (buildDate != null ? buildDate.hashCode() : 0);
+        result = 31 * result + (productType != null ? productType.hashCode() : 0);
+        result = 31 * result + (purchaseDate != null ? purchaseDate.hashCode() : 0);
         result = 31 * result + (customer != null ? customer.hashCode() : 0);
         result = 31 * result + (residentFirstName != null ? residentFirstName.hashCode() : 0);
         result = 31 * result + (residentLastName != null ? residentLastName.hashCode() : 0);

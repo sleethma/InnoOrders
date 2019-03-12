@@ -2,10 +2,10 @@ package com.innoorders.innosol.controllers;
 
 import com.innoorders.innosol.models.Order;
 import com.innoorders.innosol.models.Customer;
-import com.innoorders.innosol.models.PlanType;
+import com.innoorders.innosol.models.ProductType;
 import com.innoorders.innosol.services.OrdersService;
 import com.innoorders.innosol.services.CustomerService;
-import com.innoorders.innosol.services.PlanTypeService;
+import com.innoorders.innosol.services.ProductTypeService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -37,11 +37,11 @@ public class OrderControllerTest {
     CustomerService customerService;
 
     @Mock
-    PlanTypeService planTypeService;
+    ProductTypeService productTypeService;
 
     MockMvc mockMvc;
     Customer customer;
-    Set<PlanType> planTypes;
+    Set<ProductType> productTypes;
 
     @InjectMocks
     OrderController orderController;
@@ -53,23 +53,23 @@ public class OrderControllerTest {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(orderController).build();
 
-        planTypes = new HashSet<>();
+        productTypes = new HashSet<>();
 
          customer = new Customer();
          customer.setId(1L);
-         PlanType planType1 = new PlanType();
-         planType1.setName("Three Bedroom");
-        PlanType planType2 = new PlanType();
-        planType2.setName("Four Bedroom");
-         planTypes.add(planType1);
-         planTypes.add(planType2);
+         ProductType productType1 = new ProductType();
+         productType1.setName("Three Bedroom");
+        ProductType productType2 = new ProductType();
+        productType2.setName("Four Bedroom");
+         productTypes.add(productType1);
+         productTypes.add(productType2);
     }
 
 
     @Test
     public void initCreationFormTest() throws Exception {
         when(customerService.findById(anyLong())).thenReturn(customer);
-        when(planTypeService.findAll()).thenReturn(planTypes);
+        when(productTypeService.findAll()).thenReturn(productTypes);
 
         mockMvc.perform(get("/customers/1/orders/new"))
                 .andExpect(model().attributeExists("order"))
@@ -77,7 +77,7 @@ public class OrderControllerTest {
         .andExpect(status().isOk());
 
         verify(customerService, times(1)).findById(anyLong());
-        verify(planTypeService, times(1)).findAll();
+        verify(productTypeService, times(1)).findAll();
     }
 
     @Test
@@ -86,7 +86,7 @@ public class OrderControllerTest {
         order.setId(1L);
 
         when(customerService.findById(anyLong())).thenReturn(customer);
-        when(planTypeService.findAll()).thenReturn(planTypes);
+        when(productTypeService.findAll()).thenReturn(productTypes);
 
         mockMvc.perform(post("/customers/1/orders/new"))
                 .andExpect(status().is3xxRedirection())
@@ -101,7 +101,7 @@ public class OrderControllerTest {
         order.setId(1L);
 
         when(customerService.findById(anyLong())).thenReturn(customer);
-        when(planTypeService.findAll()).thenReturn(planTypes);
+        when(productTypeService.findAll()).thenReturn(productTypes);
         when(ordersService.findById(anyLong())).thenReturn(order);
 
         mockMvc.perform(get("/customers/1/orders/1/edit"))
@@ -109,7 +109,7 @@ public class OrderControllerTest {
         .andExpect(view().name(VIEWS_HOMES_CREATE_OR_UPDATE_FORM));
 
         verify(customerService, times(1)).findById(anyLong());
-        verify(planTypeService, times(1)).findAll();
+        verify(productTypeService, times(1)).findAll();
         verify(ordersService, times(1)).findById(anyLong());
     }
 
@@ -119,7 +119,7 @@ public class OrderControllerTest {
         order.setId(1L);
 
         when(customerService.findById(anyLong())).thenReturn(customer);
-        when(planTypeService.findAll()).thenReturn(planTypes);
+        when(productTypeService.findAll()).thenReturn(productTypes);
         when(ordersService.findById(anyLong())).thenReturn(order);
 
         mockMvc.perform(post("/customers/1/orders/1/edit"))
@@ -127,7 +127,7 @@ public class OrderControllerTest {
         .andExpect(view().name("redirect:/customers/1"));
 
         verify(customerService, times(1)).findById(anyLong());
-        verify(planTypeService, times(1)).findAll();
+        verify(productTypeService, times(1)).findAll();
         verify(ordersService, times(1)).save(any());
     }
 }

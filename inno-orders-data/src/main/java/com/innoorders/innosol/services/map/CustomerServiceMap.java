@@ -4,7 +4,7 @@ import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.Order;
 import com.innoorders.innosol.services.OrdersService;
 import com.innoorders.innosol.services.CustomerService;
-import com.innoorders.innosol.services.PlanTypeService;
+import com.innoorders.innosol.services.ProductTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,11 @@ import java.util.Set;
 public class CustomerServiceMap extends AbstractMapService<Customer, Long> implements CustomerService {
 
     private final OrdersService homeService;
-    private final PlanTypeService planTypeService;
+    private final ProductTypeService productTypeService;
 
-    public CustomerServiceMap(OrdersService homeService, PlanTypeService planTypeService) {
+    public CustomerServiceMap(OrdersService homeService, ProductTypeService productTypeService) {
         this.homeService = homeService;
-        this.planTypeService = planTypeService;
+        this.productTypeService = productTypeService;
     }
 
     @Override
@@ -37,10 +37,10 @@ public class CustomerServiceMap extends AbstractMapService<Customer, Long> imple
     public Customer save(Customer object) {
         if (object != null) {
             object.getOrders().forEach(home -> {
-                if (home.getPlanType() != null) {
-                    home.setPlanType(planTypeService.save(home.getPlanType()));
+                if (home.getProductType() != null) {
+                    home.setProductType(productTypeService.save(home.getProductType()));
                 } else {
-                    throw new RuntimeException("Must have a plan type for order");
+                    throw new RuntimeException("Must have a product type for order");
                 }
 
                 if (home.getId() == null) {

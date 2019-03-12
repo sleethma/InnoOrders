@@ -47,10 +47,10 @@
                 <dd th:text="${customer.firstName}" /></dd>
                 <dt>Build Date</dt>
                 <dd
-                        th:text="${#temporals.format(order.buildDate, 'yyyy-MM-dd')}" /></dd>
-                <dt>Floor Plan Type</dt>
-                <!--BugFix!: plan type not displaying-->
-                <dd th:text="${order.planType.name}" /></dd>
+                        th:text="${#temporals.format(order.purchaseDate, 'yyyy-MM-dd')}" /></dd>
+                <dt>Product Type</dt>
+                <!--BugFix!: product type not displaying-->
+                <dd th:text="${order.productType.name}" /></dd>
             </dl>
         </td>
         <td valign="top">

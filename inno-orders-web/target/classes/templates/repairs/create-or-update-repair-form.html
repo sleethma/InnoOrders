@@ -13,16 +13,16 @@
     <thead>
     <tr>
         <th>Resident Name</th>
-        <th>Build Date</th>
-        <th>Floor Plan Type</th>
+        <th>Purchase Date</th>
+        <th>Product Type</th>
         <th>Home Owner</th>
     </tr>
     </thead>
     <tr>
         <td th:text="${order.residentFirstName} + ${order.residentLastName}" /></td>
         <td
-                th:text="${#temporals.format(order.buildDate, 'yyyy-MM-dd')}" /></td>
-        <td th:text="${order.planType}" /></td>
+                th:text="${#temporals.format(order.purchaseDate, 'yyyy-MM-dd')}" /></td>
+        <td th:text="${order.productType}" /></td>
         <td
                 th:text="${order.customer?.firstName + ' ' + order.customer?.lastName}" /></td>
     </tr>
@@ -31,7 +31,7 @@
 <form th:object="${repair}" class="form-horizontal" method="post">
     <div class="form-group has-feedback">
         <input
-                th:replace="~{fragments/inputField :: input ('Build Date', 'date', 'date')}"  />
+                th:replace="~{fragments/inputField :: input ('Purchase Date', 'date', 'date')}"  />
         <input
                 th:replace="~{fragments/inputField :: input ('Repair Description', 'repairDescription', 'text')}" />
     </div>

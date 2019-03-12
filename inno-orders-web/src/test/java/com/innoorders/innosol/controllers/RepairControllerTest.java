@@ -59,7 +59,7 @@ public class RepairControllerTest {
     public void processNewRepairFormNoErrors() throws Exception {
         Order order = new Order();
         order.setId(homeId);
-        order.setBuildDate(LocalDate.of(2018,11,11));
+        order.setPurchaseDate(LocalDate.of(2018,11,11));
         RepairRequest repairRequest = new RepairRequest();
         repairRequest.setRepairDescription("Repair Description Here");
         repairRequest.setId(3L);

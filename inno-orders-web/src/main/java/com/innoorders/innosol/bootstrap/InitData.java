@@ -18,15 +18,15 @@ public class InitData implements CommandLineRunner {
 
     private CustomerService customerService;
     private SalesRepService salesRepService;
-    private PlanTypeService planTypeService;
+    private ProductTypeService productTypeService;
     private SpecialtyService specialtyService;
     private RepairRequestService repairRequestService;
 
-    public InitData(CustomerService customerService, SalesRepService salesRepService, PlanTypeService planTypeService,
+    public InitData(CustomerService customerService, SalesRepService salesRepService, ProductTypeService productTypeService,
                     SpecialtyService specialtyService, RepairRequestService repairRequestService) {
         this.customerService = customerService;
         this.salesRepService = salesRepService;
-        this.planTypeService = planTypeService;
+        this.productTypeService = productTypeService;
         this.specialtyService = specialtyService;
         this.repairRequestService = repairRequestService;
         log.debug("Data Init Instance Created");
@@ -53,13 +53,13 @@ public class InitData implements CommandLineRunner {
         SalesRepSpecialty savedCarpentrySpec = specialtyService.save(carpentry);
         SalesRepSpecialty savedPlumbingSpec = specialtyService.save(plumbing);
 
-        PlanType threeBedroom = new PlanType();
+        ProductType threeBedroom = new ProductType();
         threeBedroom.setName("threeBedRoom");
-        PlanType savedThreePlanType = planTypeService.save(threeBedroom);
+        ProductType savedThreeProductType = productTypeService.save(threeBedroom);
 
-        PlanType fourBedroom = new PlanType();
+        ProductType fourBedroom = new ProductType();
         fourBedroom.setName("fourBedroom");
-        PlanType savedFourPlanType = planTypeService.save(fourBedroom);
+        ProductType savedFourProductType = productTypeService.save(fourBedroom);
 
         Customer testCustomer1 = new Customer();
         testCustomer1.setFirstName("FirstName1");
@@ -70,8 +70,8 @@ public class InitData implements CommandLineRunner {
 
         Order testOwner1Order = new Order();
         testOwner1Order.setCustomer(testCustomer1);
-        testOwner1Order.setPlanType(savedThreePlanType);
-        testOwner1Order.setBuildDate(LocalDate.now());
+        testOwner1Order.setProductType(savedThreeProductType);
+        testOwner1Order.setPurchaseDate(LocalDate.now());
         testOwner1Order.setPropertyAddress("374 Fountain Crest");
         testOwner1Order.setResidentFirstName("George");
         testOwner1Order.setResidentLastName("Slimter");
@@ -96,8 +96,8 @@ public class InitData implements CommandLineRunner {
 
         Order dummyOwner2Order = new Order();
         dummyOwner2Order.setCustomer(dummyCustomer2);
-        dummyOwner2Order.setPlanType(savedFourPlanType);
-        dummyOwner2Order.setBuildDate(LocalDate.now());
+        dummyOwner2Order.setProductType(savedFourProductType);
+        dummyOwner2Order.setPurchaseDate(LocalDate.now());
         dummyOwner2Order.setPropertyAddress("764 Rightway Cr.");
         dummyOwner2Order.setResidentFirstName("Rachel");
         dummyOwner2Order.setResidentLastName("Biggs");

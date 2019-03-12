@@ -1,7 +1,7 @@
 package com.innoorders.innosol.services.map;
 
-import com.innoorders.innosol.models.PlanType;
-import com.innoorders.innosol.services.PlanTypeService;
+import com.innoorders.innosol.models.ProductType;
+import com.innoorders.innosol.services.ProductTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
-public class PlanTypeMapService extends AbstractMapService<PlanType, Long> implements PlanTypeService {
+public class ProductTypeMapService extends AbstractMapService<ProductType, Long> implements ProductTypeService {
     @Override
-    public Set<PlanType> findAll() {
+    public Set<ProductType> findAll() {
         return super.findAll();
     }
 
@@ -21,17 +21,17 @@ public class PlanTypeMapService extends AbstractMapService<PlanType, Long> imple
     }
 
     @Override
-    public void delete(PlanType object) {
+    public void delete(ProductType object) {
     super.deleteByObject(object);
     }
 
     @Override
-    public PlanType save(PlanType object) {
+    public ProductType save(ProductType object) {
         return super.save(object);
     }
 
     @Override
-    public PlanType findById(Long id) {
+    public ProductType findById(Long id) {
         return super.findById(id);
     }
 }

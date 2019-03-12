@@ -2,10 +2,10 @@ package com.innoorders.innosol.controllers;
 
 import com.innoorders.innosol.models.Customer;
 import com.innoorders.innosol.models.Order;
-import com.innoorders.innosol.models.PlanType;
+import com.innoorders.innosol.models.ProductType;
 import com.innoorders.innosol.services.OrdersService;
 import com.innoorders.innosol.services.CustomerService;
-import com.innoorders.innosol.services.PlanTypeService;
+import com.innoorders.innosol.services.ProductTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,15 +27,15 @@ public class OrderController {
 
     private final OrdersService ordersService;
     private final CustomerService customerService;
-    private final PlanTypeService planTypeService;
+    private final ProductTypeService productTypeService;
 
     private static final String VIEWS_ORDERS_CREATE_OR_UPDATE_FORM = "orders/create-or-update-order-form";
 
 
-    public OrderController(OrdersService ordersService, CustomerService customerService, PlanTypeService planTypeService) {
+    public OrderController(OrdersService ordersService, CustomerService customerService, ProductTypeService productTypeService) {
         this.ordersService = ordersService;
         this.customerService = customerService;
-        this.planTypeService = planTypeService;
+        this.productTypeService = productTypeService;
     }
 
     @InitBinder
@@ -52,8 +52,8 @@ public class OrderController {
 
 
     @ModelAttribute("types")
-    public Collection<PlanType> populatePetTypes() {
-        return planTypeService.findAll();
+    public Collection<ProductType> populatePetTypes() {
+        return productTypeService.findAll();
     }
 
     @ModelAttribute("customer")

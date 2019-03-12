@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "plan_types")
-public class PlanType extends BaseEntity {
+public class ProductType extends BaseEntity {
 
 
 
