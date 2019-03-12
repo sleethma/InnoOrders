@@ -10,7 +10,7 @@ import java.util.Set;
 @Slf4j
 @Data
 @Entity
-@Table(name = "contractors")
+@Table(name = "sales_rep")
 public class SalesRep extends Person {
 
     @ManyToMany(fetch = FetchType.EAGER)

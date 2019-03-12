@@ -10,7 +10,7 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = {"orders"})
 @Entity
-@Table(name = "owners")
+@Table(name = "customers")
 public class Customer extends Person  {
 
     @Column(name = "address")

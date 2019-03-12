@@ -13,12 +13,12 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "plan_types")
+@Table(name = "product_types")
 public class ProductType extends BaseEntity {
 
 
 
-    @Column(name = "plan_type")
+    @Column(name = "product_type")
     private String name;
 
     @Override

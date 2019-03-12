@@ -10,18 +10,18 @@ import java.util.Set;
 @Slf4j
 @Data
 @Entity
-@Table(name = "homes")
+@Table(name = "orders")
 public class Order extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "type_id")
     private ProductType productType;
 
-    @Column(name = "build_date")
+    @Column(name = "purchase_date")
     private LocalDate purchaseDate;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @Column(name = "resident_first_name")

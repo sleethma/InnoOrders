@@ -21,7 +21,7 @@ public class RepairRequest extends BaseEntity{
     private String repairDescription;
 
     @ManyToOne
-    @JoinColumn(name = "home_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Override
