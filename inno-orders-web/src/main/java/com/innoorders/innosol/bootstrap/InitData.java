@@ -68,21 +68,21 @@ public class InitData implements CommandLineRunner {
         testCustomer1.setCity("St. Louis");
         testCustomer1.setTelephone("901-222-7676");
 
-        Home testOwner1Home = new Home();
-        testOwner1Home.setCustomer(testCustomer1);
-        testOwner1Home.setPlanType(savedThreePlanType);
-        testOwner1Home.setBuildDate(LocalDate.now());
-        testOwner1Home.setPropertyAddress("374 Fountain Crest");
-        testOwner1Home.setResidentFirstName("George");
-        testOwner1Home.setResidentLastName("Slimter");
-        testCustomer1.getHomes().add(testOwner1Home);
+        Order testOwner1Order = new Order();
+        testOwner1Order.setCustomer(testCustomer1);
+        testOwner1Order.setPlanType(savedThreePlanType);
+        testOwner1Order.setBuildDate(LocalDate.now());
+        testOwner1Order.setPropertyAddress("374 Fountain Crest");
+        testOwner1Order.setResidentFirstName("George");
+        testOwner1Order.setResidentLastName("Slimter");
+        testCustomer1.getOrders().add(testOwner1Order);
         customerService.save(testCustomer1);
 
 
         //Repair Services
         RepairRequest testOwner1HomeRepair = new RepairRequest();
         testOwner1HomeRepair.setDate(LocalDate.now());
-        testOwner1HomeRepair.setHome(testOwner1Home);
+        testOwner1HomeRepair.setOrder(testOwner1Order);
         testOwner1HomeRepair.setRepairDescription("Replaced Main Entry Wood Floor Section");
         repairRequestService.save(testOwner1HomeRepair);
 
@@ -94,14 +94,14 @@ public class InitData implements CommandLineRunner {
         dummyCustomer2.setCity("Detroit");
         dummyCustomer2.setTelephone("945-666-3444");
 
-        Home dummyOwner2Home = new Home();
-        dummyOwner2Home.setCustomer(dummyCustomer2);
-        dummyOwner2Home.setPlanType(savedFourPlanType);
-        dummyOwner2Home.setBuildDate(LocalDate.now());
-        dummyOwner2Home.setPropertyAddress("764 Rightway Cr.");
-        dummyOwner2Home.setResidentFirstName("Rachel");
-        dummyOwner2Home.setResidentLastName("Biggs");
-        dummyCustomer2.getHomes().add(dummyOwner2Home);
+        Order dummyOwner2Order = new Order();
+        dummyOwner2Order.setCustomer(dummyCustomer2);
+        dummyOwner2Order.setPlanType(savedFourPlanType);
+        dummyOwner2Order.setBuildDate(LocalDate.now());
+        dummyOwner2Order.setPropertyAddress("764 Rightway Cr.");
+        dummyOwner2Order.setResidentFirstName("Rachel");
+        dummyOwner2Order.setResidentLastName("Biggs");
+        dummyCustomer2.getOrders().add(dummyOwner2Order);
         customerService.save(dummyCustomer2);
 
 

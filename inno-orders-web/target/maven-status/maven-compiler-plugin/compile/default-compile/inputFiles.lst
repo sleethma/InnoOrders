@@ -1,7 +1,7 @@
 D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\InnoOrdersApplication.java
-D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\controllers\HomeController.java
 D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\controllers\IndexController.java
 D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\bootstrap\InitData.java
+D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\controllers\OrderController.java
 D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\controllers\RepairController.java
 D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\formatters\PlanTypeFormatter.java
 D:\JavaProjects\Spring5\Innosol_Projects\inno-orders\inno-orders-web\src\main\java\com\innoorders\innosol\controllers\ContractorController.java

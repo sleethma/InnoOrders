@@ -21,10 +21,10 @@
 @REM Maven2 Start Up Batch script
 @REM
 @REM Required ENV vars:
-@REM JAVA_HOME - location of a JDK home dir
+@REM JAVA_HOME - location of a JDK order dir
 @REM
 @REM Optional ENV vars
-@REM M2_HOME - location of maven2's installed home dir
+@REM M2_HOME - location of maven2's installed order dir
 @REM MAVEN_BATCH_ECHO - set to 'on' to enable the echoing of the batch commands
 @REM MAVEN_BATCH_PAUSE - set to 'on' to wait for a key stroke before ending
 @REM MAVEN_OPTS - parameters passed to the Java VM when running Maven

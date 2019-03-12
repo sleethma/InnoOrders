@@ -22,7 +22,7 @@ public class RepairRequest extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "home_id")
-    private Home home;
+    private Order order;
 
     @Override
     public String toString() {

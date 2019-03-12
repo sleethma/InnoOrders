@@ -6,7 +6,7 @@
 <body>
 
 
-<h2>Owner Information</h2>
+<h2>Customer Information</h2>
 
 
 <table class="table table-striped" th:object="${customer}">
@@ -29,28 +29,28 @@
 </table>
 
 <a th:href="@{{id}/edit(id=${customer.id})}" class="btn btn-default">Edit
-    Owner</a>
-<a th:href="@{{id}/homes/new(id=${customer.id})}" class="btn btn-default">Add
-    New Home</a>
+    Customer</a>
+<a th:href="@{{id}/orders/new(id=${customer.id})}" class="btn btn-default">Add
+    New Order</a>
 
 <br />
 <br />
 <br />
-<h2>Homes and Repairs</h2>
+<h2>Orders and Repairs</h2>
 
 <table class="table table-striped">
 
-    <tr th:each="home : ${customer.homes}">
+    <tr th:each="order : ${customer.orders}">
         <td valign="top">
             <dl class="dl-horizontal">
                 <dt>Name</dt>
                 <dd th:text="${customer.firstName}" /></dd>
                 <dt>Build Date</dt>
                 <dd
-                        th:text="${#temporals.format(home.buildDate, 'yyyy-MM-dd')}" /></dd>
+                        th:text="${#temporals.format(order.buildDate, 'yyyy-MM-dd')}" /></dd>
                 <dt>Floor Plan Type</dt>
                 <!--BugFix!: plan type not displaying-->
-                <dd th:text="${home.planType.name}" /></dd>
+                <dd th:text="${order.planType.name}" /></dd>
             </dl>
         </td>
         <td valign="top">
@@ -61,16 +61,16 @@
                     <th>Description</th>
                 </tr>
                 </thead>
-                <tr th:each="repair : ${home.repairs}">
+                <tr th:each="repair : ${order.repairs}">
                     <td th:text="${#temporals.format(repair.date, 'yyyy-MM-dd')}"></td>
                     <td th:text="${repair.repairDescription}"></td>
                 </tr>
                 <tr>
                     <td><a
-                            th:href="@{{customerId}/homes/{homeId}/edit(customerId=${customer.id},homeId=${home.id})}">Edit
-                        Home</a></td>
+                            th:href="@{{customerId}/orders/{orderId}/edit(customerId=${customer.id},orderId=${order.id})}">Edit
+                        Order</a></td>
                     <td><a
-                            th:href="@{{customerId}/homes/{homeId}/repairs/new(customerId=${customer.id},homeId=${home.id})}">Add
+                            th:href="@{{customerId}/orders/{orderId}/repairs/new(customerId=${customer.id},orderId=${order.id})}">Add
                         Repair</a></td>
                 </tr>
             </table>

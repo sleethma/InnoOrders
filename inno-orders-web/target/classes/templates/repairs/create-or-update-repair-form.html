@@ -19,12 +19,12 @@
     </tr>
     </thead>
     <tr>
-        <td th:text="${home.residentFirstName} + ${home.residentLastName}" /></td>
+        <td th:text="${order.residentFirstName} + ${order.residentLastName}" /></td>
         <td
-                th:text="${#temporals.format(home.buildDate, 'yyyy-MM-dd')}" /></td>
-        <td th:text="${home.planType}" /></td>
+                th:text="${#temporals.format(order.buildDate, 'yyyy-MM-dd')}" /></td>
+        <td th:text="${order.planType}" /></td>
         <td
-                th:text="${home.customer?.firstName + ' ' + home.customer?.lastName}" /></td>
+                th:text="${order.customer?.firstName + ' ' + order.customer?.lastName}" /></td>
     </tr>
 </table>
 
@@ -38,7 +38,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <input type="hidden" name="homeId" th:value="${home.id}" />
+            <input type="hidden" name="homeId" th:value="${order.id}" />
             <button class="btn btn-default" type="submit">Add Repair Request</button>
         </div>
     </div>
@@ -51,7 +51,7 @@
         <th>Date</th>
         <th>Description</th>
     </tr>
-    <tr th:if="${!repair['new']}" th:each="repair : ${home.repairs}">
+    <tr th:if="${!repair['new']}" th:each="repair : ${order.repairs}">
         <td th:text="${#temporals.format(repair.date, 'yyyy-MM-dd')}" /></td>
         <td th:text=" ${repair.repairDescription}" /></td>
     </tr>

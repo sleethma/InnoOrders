@@ -1,8 +1,8 @@
 package com.innoorders.innosol.services.map;
 
 import com.innoorders.innosol.models.Customer;
-import com.innoorders.innosol.models.Home;
-import com.innoorders.innosol.services.HomesService;
+import com.innoorders.innosol.models.Order;
+import com.innoorders.innosol.services.OrdersService;
 import com.innoorders.innosol.services.CustomerService;
 import com.innoorders.innosol.services.PlanTypeService;
 import org.springframework.context.annotation.Profile;
@@ -15,10 +15,10 @@ import java.util.Set;
 @Profile({"default", "map"})
 public class CustomerServiceMap extends AbstractMapService<Customer, Long> implements CustomerService {
 
-    private final HomesService homeService;
+    private final OrdersService homeService;
     private final PlanTypeService planTypeService;
 
-    public CustomerServiceMap(HomesService homeService, PlanTypeService planTypeService) {
+    public CustomerServiceMap(OrdersService homeService, PlanTypeService planTypeService) {
         this.homeService = homeService;
         this.planTypeService = planTypeService;
     }
@@ -36,16 +36,16 @@ public class CustomerServiceMap extends AbstractMapService<Customer, Long> imple
     @Override
     public Customer save(Customer object) {
         if (object != null) {
-            object.getHomes().forEach(home -> {
+            object.getOrders().forEach(home -> {
                 if (home.getPlanType() != null) {
                     home.setPlanType(planTypeService.save(home.getPlanType()));
                 } else {
-                    throw new RuntimeException("Must have a plan type for home");
+                    throw new RuntimeException("Must have a plan type for order");
                 }
 
                 if (home.getId() == null) {
-                    Home savedHome = homeService.save(home);
-                    home.setId(savedHome.getId());
+                    Order savedOrder = homeService.save(home);
+                    home.setId(savedOrder.getId());
                 }
             });
             return super.save(object);

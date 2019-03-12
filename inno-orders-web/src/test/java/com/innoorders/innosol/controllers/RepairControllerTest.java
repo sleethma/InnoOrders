@@ -1,8 +1,8 @@
 package com.innoorders.innosol.controllers;
 
-import com.innoorders.innosol.models.Home;
+import com.innoorders.innosol.models.Order;
 import com.innoorders.innosol.models.RepairRequest;
-import com.innoorders.innosol.repos.HomeRepo;
+import com.innoorders.innosol.repos.OrderRepo;
 import com.innoorders.innosol.services.RepairRequestService;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class RepairControllerTest {
 
 
     @Mock
-    HomeRepo homeRepo;
+    OrderRepo orderRepo;
 
     @Mock
     RepairRequestService repairRequestService;
@@ -42,7 +42,7 @@ public class RepairControllerTest {
     MockMvc mockMvc;
 
     private URI uri;
-    private UriTemplate uriTemplate = new UriTemplate("/customers/{ownerId}/homes/{homeId}/repairs/new");
+    private UriTemplate uriTemplate = new UriTemplate("/customers/{ownerId}/orders/{homeId}/repairs/new");
     private Map<String, String> uriVars;
     Long ownerId = 1L;
     Long homeId = 2L;
@@ -57,13 +57,13 @@ public class RepairControllerTest {
 
     @Test
     public void processNewRepairFormNoErrors() throws Exception {
-        Home home = new Home();
-        home.setId(homeId);
-        home.setBuildDate(LocalDate.of(2018,11,11));
+        Order order = new Order();
+        order.setId(homeId);
+        order.setBuildDate(LocalDate.of(2018,11,11));
         RepairRequest repairRequest = new RepairRequest();
         repairRequest.setRepairDescription("Repair Description Here");
         repairRequest.setId(3L);
-        repairRequest.setHome(home);
+        repairRequest.setOrder(order);
         uriVars= new HashMap<>();
         uriVars.clear();
         uriVars.put("ownerId", ownerId.toString());
@@ -73,7 +73,7 @@ public class RepairControllerTest {
 
 
         //when
-        when(homeRepo.findById(homeId)).thenReturn(Optional.of(home));
+        when(orderRepo.findById(homeId)).thenReturn(Optional.of(order));
         mockMvc.perform(post(uri)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         .param("date", "2018-11-11" )

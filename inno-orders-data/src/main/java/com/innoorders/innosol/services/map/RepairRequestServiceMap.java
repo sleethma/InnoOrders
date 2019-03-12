@@ -27,9 +27,9 @@ public class RepairRequestServiceMap extends AbstractMapService<RepairRequest, L
 
     @Override
     public RepairRequest save(RepairRequest repairRequest) {
-        if(repairRequest.getHome() == null)
-            throw new RuntimeException("Repair Request Has no Associated Home");
-        if(repairRequest.getHome().getId() == null)
+        if(repairRequest.getOrder() == null)
+            throw new RuntimeException("Repair Request Has no Associated Order");
+        if(repairRequest.getOrder().getId() == null)
             throw new RuntimeException("Invalid Repair Request, No id value");
         return super.save(repairRequest);
     }

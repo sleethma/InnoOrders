@@ -1,9 +1,9 @@
 package com.innoorders.innosol.services.map;
 
 import com.innoorders.innosol.models.Customer;
-import com.innoorders.innosol.models.Home;
+import com.innoorders.innosol.models.Order;
 import com.innoorders.innosol.models.PlanType;
-import com.innoorders.innosol.services.HomesService;
+import com.innoorders.innosol.services.OrdersService;
 import com.innoorders.innosol.services.PlanTypeService;
 
 import org.junit.Before;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class CustomerServiceMapTest {
 
     @Mock
-    HomesService homeService;
+    OrdersService homeService;
 
     @Mock
     PlanTypeService planTypeService;
@@ -37,10 +37,10 @@ public class CustomerServiceMapTest {
     PlanType planType;
 
     @Mock
-    Home home;
+    Order order;
 
     CustomerServiceMap ownerServiceMap;
-    Set<Home> homes;
+    Set<Order> orders;
     Long ownerId = 2L;
 
 
@@ -50,8 +50,8 @@ public class CustomerServiceMapTest {
         Customer unmockedCustomer = new Customer();
         unmockedCustomer.setId(2L);
         ownerServiceMap = new CustomerServiceMap(homeService, planTypeService);
-        homes = new HashSet<>();
-        homes.add(home);
+        orders = new HashSet<>();
+        orders.add(order);
 
 //        customer = new Customer();
 //        customer.setFirstName("FirstName2");
@@ -84,30 +84,30 @@ public class CustomerServiceMapTest {
     }
     @Test
     public void ownerServiceSaveOwnerWithNonNullPlanType(){
-        when(customer.getHomes()).thenReturn(homes);
-        when(home.getPlanType()).thenReturn(planType);
+        when(customer.getOrders()).thenReturn(orders);
+        when(order.getPlanType()).thenReturn(planType);
 
         ownerServiceMap.save(customer);
 
-        verify(customer, times(homes.size())).getHomes();
-        verify(planTypeService, times(homes.size())).save(planType);
+        verify(customer, times(orders.size())).getOrders();
+        verify(planTypeService, times(orders.size())).save(planType);
     }
 
     @Test
     public void ownerServiceSaveOwnerWithNullPlanHomeId(){
         //add
-        when(customer.getHomes()).thenReturn(homes);
-        when(home.getPlanType()).thenReturn(planType);
-        when(home.getId()).thenReturn(null);
-        when(homeService.save(home)).thenReturn(home);
+        when(customer.getOrders()).thenReturn(orders);
+        when(order.getPlanType()).thenReturn(planType);
+        when(order.getId()).thenReturn(null);
+        when(homeService.save(order)).thenReturn(order);
 
         //actuate
         ownerServiceMap.save(customer);
 
         //assert
-        verify(customer, times(homes.size())).getHomes();
-        verify(planTypeService, times(homes.size())).save(planType);
-        verify(homeService, times(homes.size())).save(home);
-        verify(home, times(homes.size())).setId(null);
+        verify(customer, times(orders.size())).getOrders();
+        verify(planTypeService, times(orders.size())).save(planType);
+        verify(homeService, times(orders.size())).save(order);
+        verify(order, times(orders.size())).setId(null);
     }
 }

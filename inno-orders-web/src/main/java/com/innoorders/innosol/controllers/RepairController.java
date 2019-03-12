@@ -1,8 +1,8 @@
 package com.innoorders.innosol.controllers;
 
-import com.innoorders.innosol.models.Home;
+import com.innoorders.innosol.models.Order;
 import com.innoorders.innosol.models.RepairRequest;
-import com.innoorders.innosol.repos.HomeRepo;
+import com.innoorders.innosol.repos.OrderRepo;
 import com.innoorders.innosol.services.RepairRequestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,13 +20,13 @@ import java.time.LocalDate;
 public class RepairController {
 
     private final RepairRequestService repairRequestService;
-    private final HomeRepo homeRepo;
+    private final OrderRepo orderRepo;
     private final String CREATE_OR_UPDATE_REPAIR_VIEW = "repairs/create-or-update-repair-form";
 
 
-    public RepairController(RepairRequestService repairRequestService, HomeRepo homeRepo) {
+    public RepairController(RepairRequestService repairRequestService, OrderRepo orderRepo) {
         this.repairRequestService = repairRequestService;
-        this.homeRepo = homeRepo;
+        this.orderRepo = orderRepo;
     }
 
     @InitBinder
@@ -43,23 +43,23 @@ public class RepairController {
 
     @ModelAttribute("repair")
     public RepairRequest loadPetWithVisit(@PathVariable("homeId") Long homeId, Model model) {
-        Home home = homeRepo.findById(homeId).get();
-        model.addAttribute("home", home);
+        Order order = orderRepo.findById(homeId).get();
+        model.addAttribute("order", order);
 
         RepairRequest repairRequest = new RepairRequest();
-        home.addRepairRequest(repairRequest);
-        repairRequest.setHome(home);
+        order.addRepairRequest(repairRequest);
+        repairRequest.setOrder(order);
         return repairRequest;
     }
 
     // Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-    @GetMapping("/customers/{ownerId}/homes/{homeId}/repairs/new")
+    @GetMapping("/customers/{ownerId}/orders/{homeId}/repairs/new")
     public String initNewVisitForm(@PathVariable Long homeId, Model model) {
         return CREATE_OR_UPDATE_REPAIR_VIEW;
     }
 
     // Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
-    @PostMapping("/customers/{ownerId}/homes/{homeId}/repairs/new")
+    @PostMapping("/customers/{ownerId}/orders/{homeId}/repairs/new")
     public String processNewRepairForm(@Valid RepairRequest repairRequest, BindingResult result) {
         if (result.hasErrors()) {
             return CREATE_OR_UPDATE_REPAIR_VIEW;

@@ -1,16 +1,16 @@
 package com.innoorders.innosol.services.map;
 
-import com.innoorders.innosol.models.Home;
-import com.innoorders.innosol.services.HomesService;
+import com.innoorders.innosol.models.Order;
+import com.innoorders.innosol.services.OrdersService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service
 @Profile({"default", "map"})
-public class HomeServiceMap extends AbstractMapService<Home, Long> implements HomesService {
+public class OrderServiceMap extends AbstractMapService<Order, Long> implements OrdersService {
     @Override
-    public Set<Home> findAll() {
+    public Set<Order> findAll() {
         return super.findAll();
     }
 
@@ -20,17 +20,17 @@ public class HomeServiceMap extends AbstractMapService<Home, Long> implements Ho
     }
 
     @Override
-    public Home findById(Long id) {
+    public Order findById(Long id) {
         return super.findById(id);
     }
 
     @Override
-    public Home save(Home object) {
+    public Order save(Order object) {
         return super.save(object);
     }
 
     @Override
-    public void delete(Home object) {
+    public void delete(Order object) {
     super.deleteByObject(object);
     }
 }

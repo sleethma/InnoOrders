@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "homes")
-public class Home extends BaseEntity{
+public class Order extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "type_id")
@@ -34,14 +34,14 @@ public class Home extends BaseEntity{
     private String propertyAddress;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "home")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private Set<RepairRequest> repairs = new HashSet<>();
 
     public void addRepairRequest(RepairRequest repairRequest){
         repairs.add(repairRequest);
     }
 
-    //todo: not overriding hash causes SO Exception between home and repair oneToMany relationship
+    //todo: not overriding hash causes SO Exception between order and repair oneToMany relationship
     @Override
     public int hashCode() {
         int result = super.hashCode();

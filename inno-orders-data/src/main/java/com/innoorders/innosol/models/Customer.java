@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Slf4j
 @Data
-@EqualsAndHashCode(exclude = {"homes"})
+@EqualsAndHashCode(exclude = {"orders"})
 @Entity
 @Table(name = "owners")
 public class Customer extends Person  {
@@ -20,18 +20,18 @@ public class Customer extends Person  {
     @Column(name = "city")
     private String city;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private Set<Home> homes = new HashSet<>();
+    private Set<Order> orders = new HashSet<>();
 
 
-    public Home getHome(String firstName, String lastName, boolean ignoreNew) {
+    public Order getOrder(String firstName, String lastName, boolean ignoreNew) {
         firstName = firstName.toLowerCase();
         lastName = lastName.toLowerCase();
-        for (Home home : homes) {
-            if (!ignoreNew || !home.isNew()) {
-                String compFirstName = home.getResidentFirstName().toLowerCase();
-                String compLastName = home.getResidentLastName().toLowerCase();
+        for (Order order : orders) {
+            if (!ignoreNew || !order.isNew()) {
+                String compFirstName = order.getResidentFirstName().toLowerCase();
+                String compLastName = order.getResidentLastName().toLowerCase();
                 if (compFirstName.equals(firstName) && compLastName.equals(lastName)) {
-                    return home;
+                    return order;
                 }
             }
         }

@@ -1,9 +1,9 @@
 package com.innoorders.innosol.controllers;
 
 import com.innoorders.innosol.models.Customer;
-import com.innoorders.innosol.models.Home;
+import com.innoorders.innosol.models.Order;
 import com.innoorders.innosol.models.PlanType;
-import com.innoorders.innosol.services.HomesService;
+import com.innoorders.innosol.services.OrdersService;
 import com.innoorders.innosol.services.CustomerService;
 import com.innoorders.innosol.services.PlanTypeService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,18 +22,18 @@ import java.util.Collection;
 @Slf4j
 @RequestMapping("/customers/{ownerId}")
 @Controller
-public class HomeController {
+public class OrderController {
 
 
-    private final HomesService homesService;
+    private final OrdersService ordersService;
     private final CustomerService customerService;
     private final PlanTypeService planTypeService;
 
-    private static final String VIEWS_HOMES_CREATE_OR_UPDATE_FORM = "homes/create-or-update-home-form";
+    private static final String VIEWS_ORDERS_CREATE_OR_UPDATE_FORM = "orders/create-or-update-order-form";
 
 
-    public HomeController(HomesService homesService, CustomerService customerService, PlanTypeService planTypeService) {
-        this.homesService = homesService;
+    public OrderController(OrdersService ordersService, CustomerService customerService, PlanTypeService planTypeService) {
+        this.ordersService = ordersService;
         this.customerService = customerService;
         this.planTypeService = planTypeService;
     }
@@ -66,47 +66,47 @@ public class HomeController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @GetMapping("/homes/new")
+    @GetMapping("/orders/new")
     public String initCreationForm(Customer customer, Model model) {
-        Home home = new Home();
-        customer.getHomes().add(home);
-        home.setCustomer(customer);
-        model.addAttribute("home", home);
-        return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
+        Order order = new Order();
+        customer.getOrders().add(order);
+        order.setCustomer(customer);
+        model.addAttribute("order", order);
+        return VIEWS_ORDERS_CREATE_OR_UPDATE_FORM;
     }
 
-    @PostMapping("/homes/new")
-    public String processCreationForm(Customer customer, @Valid Home home, BindingResult result, Model model) {
-        if (StringUtils.hasLength(home.getResidentFirstName()) && StringUtils.hasLength(home.getResidentLastName())
-                && home.isNew() && customer.getHome(home.getResidentFirstName(), home.getResidentLastName(), true) != null) {
+    @PostMapping("/orders/new")
+    public String processCreationForm(Customer customer, @Valid Order order, BindingResult result, Model model) {
+        if (StringUtils.hasLength(order.getResidentFirstName()) && StringUtils.hasLength(order.getResidentLastName())
+                && order.isNew() && customer.getOrder(order.getResidentFirstName(), order.getResidentLastName(), true) != null) {
             result.rejectValue("name", "duplicate", "already exists");
         }
-        customer.getHomes().add(home);
+        customer.getOrders().add(order);
         if (result.hasErrors()) {
-            model.addAttribute("home", home);
-            return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
+            model.addAttribute("order", order);
+            return VIEWS_ORDERS_CREATE_OR_UPDATE_FORM;
         } else {
-            homesService.save(home);
+            ordersService.save(order);
             return "redirect:/customers/" + customer.getId();
         }
     }
 
-    @GetMapping("/homes/{homeId}/edit")
-    public String initUpdateForm(@PathVariable Long homeId, Model model) {
-        model.addAttribute("home", homesService.findById(homeId));
-        return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
+    @GetMapping("/orders/{orderId}/edit")
+    public String initUpdateForm(@PathVariable Long orderId, Model model) {
+        model.addAttribute("order", ordersService.findById(orderId));
+        return VIEWS_ORDERS_CREATE_OR_UPDATE_FORM;
     }
 
-    @PostMapping("/homes/{homeId}/edit")
-    public String processUpdateForm(Customer customer, @Valid Home home, BindingResult result, Model model) {
+    @PostMapping("/orders/{orderId}/edit")
+    public String processUpdateForm(Customer customer, @Valid Order order, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            home.setCustomer(customer);
-            model.addAttribute("home", home);
-            return VIEWS_HOMES_CREATE_OR_UPDATE_FORM;
+            order.setCustomer(customer);
+            model.addAttribute("order", order);
+            return VIEWS_ORDERS_CREATE_OR_UPDATE_FORM;
         } else {
-            customer.getHomes().add(home);
-            homesService.save(home);
+            customer.getOrders().add(order);
+            ordersService.save(order);
             return "redirect:/customers/" + customer.getId();
         }
     }
