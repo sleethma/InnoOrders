@@ -1,7 +1,7 @@
 package com.innoorders.innosol.services;
 
-import com.innoorders.innosol.models.ContractorSpecialty;
+import com.innoorders.innosol.models.SalesRepSpecialty;
 
-public interface SpecialtyService extends CRUDService<ContractorSpecialty, Long> {
+public interface SpecialtyService extends CRUDService<SalesRepSpecialty, Long> {
 
 }

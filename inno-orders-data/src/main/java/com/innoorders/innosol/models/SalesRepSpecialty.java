@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "specialties")
-public class ContractorSpecialty extends BaseEntity {
+public class SalesRepSpecialty extends BaseEntity {
 
     @Column(name = "description")
     private String specialty;

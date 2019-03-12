@@ -17,15 +17,15 @@ import java.time.LocalDate;
 public class InitData implements CommandLineRunner {
 
     private CustomerService customerService;
-    private ContractorService contractorService;
+    private SalesRepService salesRepService;
     private PlanTypeService planTypeService;
     private SpecialtyService specialtyService;
     private RepairRequestService repairRequestService;
 
-    public InitData(CustomerService customerService, ContractorService contractorService, PlanTypeService planTypeService,
+    public InitData(CustomerService customerService, SalesRepService salesRepService, PlanTypeService planTypeService,
                     SpecialtyService specialtyService, RepairRequestService repairRequestService) {
         this.customerService = customerService;
-        this.contractorService = contractorService;
+        this.salesRepService = salesRepService;
         this.planTypeService = planTypeService;
         this.specialtyService = specialtyService;
         this.repairRequestService = repairRequestService;
@@ -40,18 +40,18 @@ public class InitData implements CommandLineRunner {
     }
 
     private void loadData() {
-        ContractorSpecialty roofing = new ContractorSpecialty();
+        SalesRepSpecialty roofing = new SalesRepSpecialty();
         roofing.setSpecialty("Roofing");
-        ContractorSpecialty carpentry = new ContractorSpecialty();
+        SalesRepSpecialty carpentry = new SalesRepSpecialty();
         carpentry.setSpecialty("Carpentry");
-        ContractorSpecialty plumbing = new ContractorSpecialty();
+        SalesRepSpecialty plumbing = new SalesRepSpecialty();
         plumbing.setSpecialty("Plumbing");
 
 
         //persisting Specialties to Map
-        ContractorSpecialty savedRoofingSpec = specialtyService.save(roofing);
-        ContractorSpecialty savedCarpentrySpec = specialtyService.save(carpentry);
-        ContractorSpecialty savedPlumbingSpec = specialtyService.save(plumbing);
+        SalesRepSpecialty savedRoofingSpec = specialtyService.save(roofing);
+        SalesRepSpecialty savedCarpentrySpec = specialtyService.save(carpentry);
+        SalesRepSpecialty savedPlumbingSpec = specialtyService.save(plumbing);
 
         PlanType threeBedroom = new PlanType();
         threeBedroom.setName("threeBedRoom");
@@ -112,20 +112,20 @@ public class InitData implements CommandLineRunner {
 
         System.out.println("Loaded Owners");
 
-        Contractor dummyContractor1 = new Contractor();
-        dummyContractor1.setFirstName("Jim");
-        dummyContractor1.setLastName("Baggins");
-        dummyContractor1.getSpecialties().add(savedRoofingSpec);
-        contractorService.save(dummyContractor1);
+        SalesRep dummySalesRep1 = new SalesRep();
+        dummySalesRep1.setFirstName("Jim");
+        dummySalesRep1.setLastName("Baggins");
+        dummySalesRep1.getSpecialties().add(savedRoofingSpec);
+        salesRepService.save(dummySalesRep1);
 
-        Contractor dummyContractor2 = new Contractor();
-        dummyContractor2.setFirstName("Chase");
-        dummyContractor2.setLastName("Chitin");
-        dummyContractor2.getSpecialties().add(savedPlumbingSpec);
-        dummyContractor2.getSpecialties().add(savedCarpentrySpec);
-        contractorService.save(dummyContractor2);
+        SalesRep dummySalesRep2 = new SalesRep();
+        dummySalesRep2.setFirstName("Chase");
+        dummySalesRep2.setLastName("Chitin");
+        dummySalesRep2.getSpecialties().add(savedPlumbingSpec);
+        dummySalesRep2.getSpecialties().add(savedCarpentrySpec);
+        salesRepService.save(dummySalesRep2);
 
 
-        System.out.println("Contractors Loaded");
+        System.out.println("Sales Representatives Loaded");
     }
 }

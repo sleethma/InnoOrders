@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+
+<body>
+
+<h2>Sales Representatives</h2>
+
+<table id="vets" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Specialties</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="salesRep : ${salesReps}">
+        <td th:text="${salesRep.firstName + ' ' + salesRep.lastName}"></td>
+        <td><span th:each="salesRepSpecialty : ${salesRep.specialties}"
+                  th:text="${salesRepSpecialty.specialty + ' '}" /> <span
+                th:if="${salesRepSpecialty?.specialties?.size() == 0}">none</span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

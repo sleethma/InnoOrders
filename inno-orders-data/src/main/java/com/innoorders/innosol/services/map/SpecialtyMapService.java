@@ -1,6 +1,6 @@
 package com.innoorders.innosol.services.map;
 
-import com.innoorders.innosol.models.ContractorSpecialty;
+import com.innoorders.innosol.models.SalesRepSpecialty;
 import com.innoorders.innosol.services.SpecialtyService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
-public class SpecialtyMapService extends AbstractMapService<ContractorSpecialty, Long> implements SpecialtyService {
+public class SpecialtyMapService extends AbstractMapService<SalesRepSpecialty, Long> implements SpecialtyService {
 
     @Override
-    public Set<ContractorSpecialty> findAll() {
+    public Set<SalesRepSpecialty> findAll() {
         return super.findAll();
     }
 
@@ -21,17 +21,17 @@ public class SpecialtyMapService extends AbstractMapService<ContractorSpecialty,
     }
 
     @Override
-    public ContractorSpecialty save(ContractorSpecialty object) {
+    public SalesRepSpecialty save(SalesRepSpecialty object) {
         return super.save(object);
     }
 
     @Override
-    public void delete(ContractorSpecialty object) {
+    public void delete(SalesRepSpecialty object) {
 
     }
 
     @Override
-    public ContractorSpecialty findById(Long id) {
+    public SalesRepSpecialty findById(Long id) {
         return super.findById(id);
     }
 }

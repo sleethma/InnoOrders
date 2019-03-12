@@ -11,11 +11,11 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "contractors")
-public class Contractor extends Person {
+public class SalesRep extends Person {
 
     @ManyToMany(fetch = FetchType.EAGER)
       @JoinTable(name = "contractor_specialties",
               joinColumns = @JoinColumn(name = "contractor_id"),
               inverseJoinColumns = @JoinColumn(name = "specialty_id"))
-    Set<ContractorSpecialty> specialties = new HashSet<>();
+    Set<SalesRepSpecialty> specialties = new HashSet<>();
 }

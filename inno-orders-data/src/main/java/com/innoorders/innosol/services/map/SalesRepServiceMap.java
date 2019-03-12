@@ -1,8 +1,8 @@
 package com.innoorders.innosol.services.map;
 
-import com.innoorders.innosol.models.Contractor;
-import com.innoorders.innosol.models.ContractorSpecialty;
-import com.innoorders.innosol.services.ContractorService;
+import com.innoorders.innosol.models.SalesRep;
+import com.innoorders.innosol.models.SalesRepSpecialty;
+import com.innoorders.innosol.services.SalesRepService;
 import com.innoorders.innosol.services.SpecialtyService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -11,16 +11,16 @@ import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
-public class ContractorServiceMap extends AbstractMapService<Contractor, Long> implements ContractorService {
+public class SalesRepServiceMap extends AbstractMapService<SalesRep, Long> implements SalesRepService {
 
     private SpecialtyService specialtyService;
 
-    public ContractorServiceMap(SpecialtyService specialtyService) {
+    public SalesRepServiceMap(SpecialtyService specialtyService) {
         this.specialtyService = specialtyService;
     }
 
     @Override
-    public Set<Contractor> findAll() {
+    public Set<SalesRep> findAll() {
         return super.findAll();
     }
 
@@ -30,22 +30,22 @@ public class ContractorServiceMap extends AbstractMapService<Contractor, Long> i
     }
 
     @Override
-    public void delete(Contractor object) {
+    public void delete(SalesRep object) {
     super.deleteByObject(object);
     }
 
     @Override
-    public Contractor findById(Long id) {
+    public SalesRep findById(Long id) {
         return super.findById(id);
     }
 
     @Override
-    public Contractor save(Contractor object) {
+    public SalesRep save(SalesRep object) {
         if(object.getSpecialties().size() > 0){
             object.getSpecialties().forEach(specialty ->{
                 if (specialty.getId() == null) {
                     //creates id for specialty if none
-                    ContractorSpecialty savedSpecialty = specialtyService.save(specialty);
+                    SalesRepSpecialty savedSpecialty = specialtyService.save(specialty);
                     specialty.setId(savedSpecialty.getId());
 
                 }
@@ -56,7 +56,7 @@ public class ContractorServiceMap extends AbstractMapService<Contractor, Long> i
 
 
     @Override
-    public Contractor findByLastName(String lastName) {
+    public SalesRep findByLastName(String lastName) {
         return null;
     }
 }
