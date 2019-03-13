@@ -42,8 +42,8 @@ public class RepairController {
     }
 
     @ModelAttribute("repair")
-    public RepairRequest loadPetWithVisit(@PathVariable("homeId") Long homeId, Model model) {
-        Order order = orderRepo.findById(homeId).get();
+    public RepairRequest loadOrderWithRepair(@PathVariable("orderId") Long orderId, Model model) {
+        Order order = orderRepo.findById(orderId).get();
         model.addAttribute("order", order);
 
         RepairRequest repairRequest = new RepairRequest();
@@ -52,23 +52,22 @@ public class RepairController {
         return repairRequest;
     }
 
-    // Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-    @GetMapping("/customers/{ownerId}/orders/{homeId}/repairs/new")
-    public String initNewVisitForm(@PathVariable Long homeId, Model model) {
+    @GetMapping("/customers/{customerId}/orders/{orderId}/repairs/new")
+    public String initNewVisitForm(@PathVariable Long orderId, Model model) {
         return CREATE_OR_UPDATE_REPAIR_VIEW;
     }
 
-    // Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
-    @PostMapping("/customers/{ownerId}/orders/{homeId}/repairs/new")
+
+    @PostMapping("/customers/{customerId}/orders/{orderId}/repairs/new")
     public String processNewRepairForm(@Valid RepairRequest repairRequest, BindingResult result) {
         if (result.hasErrors()) {
             return CREATE_OR_UPDATE_REPAIR_VIEW;
         } else {
-            //todo: bug issue #64 repair description not populating
+            //todo: bug issue #6 repair description not populating
             String testRepair = repairRequest.getRepairDescription();
 
             repairRequestService.save(repairRequest);
-            return "redirect:/customers/{ownerId}";
+            return "redirect:/customers/{customerId}";
         }
     }
 

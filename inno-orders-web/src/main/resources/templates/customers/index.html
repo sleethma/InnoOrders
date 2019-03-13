@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
-    <meta charset="UTF-8" >
-    <head>
-        <meta charset="UTF-8">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-        <title>InnoSessions | Customers List</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>InnoSessions | Customers List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-        <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
-        <style>
+    <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+    <style>
 
     :root{
  --global-font:amita;
@@ -104,53 +104,54 @@ ul{
 
 
 
+
     </style>
 
-    </head>
+</head>
 
 
-    <body>
-    <div class="container">
-        <div>
-            <nav class="navbar  navbar-fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">InnoSessions</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
-                        <li><a class="inn-nav-text" href="#">Orders</a></li>
-                        <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>
+<body>
+<div class="container">
+    <div>
+        <nav class="navbar  navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">InnoSessions</a>
                 </div>
-            </nav>
-        </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
+                    <li><a class="inn-nav-text" href="#">Orders</a></li>
+                    <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 
-<h2 th:text="'List Of Customers'">Customers List</h2>
+    <h2 th:text="'List Of Customers'">Customers List</h2>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th  style="width: 150px;">Id</th>
-        <th  style="width: 150px;">First Name</th>
-        <th  style="width: 150px;">Last Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="customer : ${customers}">
-        <td th:text="${customer.id}">1</td>
-        <td th:text="${customer.firstName}">Joe</td>
-        <td th:text="${customer.lastName}">Buck</td>
-    </tr>
-    </tbody>
-</table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Id</th>
+            <th style="width: 150px;">First Name</th>
+            <th style="width: 150px;">Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}">1</td>
+            <td th:text="${customer.firstName}">Joe</td>
+            <td th:text="${customer.lastName}">Buck</td>
+        </tr>
+        </tbody>
+    </table>
 
 
+</div>
 
 </body>
 </html>

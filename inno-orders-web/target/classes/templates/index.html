@@ -113,11 +113,13 @@ ul{
         <nav class="navbar  navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">InnoSessions</a>
+                    <a class="navbar-brand" href="#" th:href="@{/}">InnoSessions</a>
+<!--th:href="@{{customerId}/orders/{orderId}/repairs/new(customerId=${customer.id},orderId=${order.id})}"-->
+
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
-                    <li><a class="inn-nav-text" href="#">Orders</a></li>
+                    <li><a class="inn-nav-text" href="#" th:href="@{/customers}">Customers</a></li>
                     <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

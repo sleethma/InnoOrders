@@ -1,20 +1,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
-      <!--th:replace="~{fragments/layout :: layout (~{::body},'customers')}">-->
-      <head>
-          <meta charset="UTF-8">
+<!--th:replace="~{fragments/layout :: layout (~{::body},'customers')}">-->
+<head>
+    <meta charset="UTF-8">
 
-          <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-          <title>InnoSessions | Repair Form</title>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>InnoSessions | Repair Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-          <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
-          <style>
+    <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+    <style>
 
     :root{
  --global-font:amita;
@@ -103,9 +103,10 @@ ul{
 
 
 
+
     </style>
 
-      </head>
+</head>
 
 <body>
 <div class="container">
@@ -127,60 +128,66 @@ ul{
             </div>
         </nav>
     </div>
-</div>
-<h2>
-    <th:block th:if="${repair['new']}">New </th:block>
-    Repair
-</h2>
 
-<b>Purchase</b>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Product Name</th>
-        <th>Purchase Date</th>
-        <th>Product Type</th>
-        <th>Customer</th>
-    </tr>
-    </thead>
-    <tr>
-        <td th:text="${order.residentFirstName} + ${order.residentLastName}" /></td>
-        <td
-                th:text="${#temporals.format(order.purchaseDate, 'yyyy-MM-dd')}" /></td>
-        <td th:text="${order.productType}" /></td>
-        <td
-                th:text="${order.customer?.firstName + ' ' + order.customer?.lastName}" /></td>
-    </tr>
-</table>
+    <h2>
+        <th:block th:if="${repair['new']}">New</th:block>
+        Repair
+    </h2>
 
-<form th:object="${repair}" class="form-horizontal" method="post">
-    <div class="form-group has-feedback">
-        <input
-                th:replace="~{fragments/inputField :: input ('Purchase Date', 'date', 'date')}"  />
-        <input
-                th:replace="~{fragments/inputField :: input ('Repair Description', 'repairDescription', 'text')}" />
-    </div>
+    <b>Purchase</b>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Purchase Date</th>
+            <th>Product Type</th>
+            <th>Customer</th>
+        </tr>
+        </thead>
+        <tr>
+            <td th:text="${order.residentFirstName} + ${order.residentLastName}"/>
+            </td>
+            <td
+                    th:text="${#temporals.format(order.purchaseDate, 'yyyy-MM-dd')}"/>
+            </td>
+            <td th:text="${order.productType}"/>
+            </td>
+            <td
+                    th:text="${order.customer?.firstName + ' ' + order.customer?.lastName}"/>
+            </td>
+        </tr>
+    </table>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <input type="hidden" name="homeId" th:value="${order.id}" />
-            <button class="btn btn-default" type="submit">Add Repair Request</button>
+    <form th:object="${repair}" class="form-horizontal" method="post">
+        <div class="form-group has-feedback">
+            <input
+                    th:replace="~{fragments/inputField :: input ('Purchase Date', 'date', 'date')}"/>
+            <input
+                    th:replace="~{fragments/inputField :: input ('Repair Description', 'repairDescription', 'text')}"/>
         </div>
-    </div>
-</form>
 
-<br />
-<b>Previous Repairs</b>
-<table class="table table-striped">
-    <tr>
-        <th>Date</th>
-        <th>Description</th>
-    </tr>
-    <tr th:if="${!repair['new']}" th:each="repair : ${order.repairs}">
-        <td th:text="${#temporals.format(repair.date, 'yyyy-MM-dd')}" /></td>
-        <td th:text=" ${repair.repairDescription}" /></td>
-    </tr>
-</table>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="orderId" th:value="${order.id}"/>
+                <button class="btn btn-default" type="submit">Add Repair Request</button>
+            </div>
+        </div>
+    </form>
 
+    <br/>
+    <b>Previous Repairs</b>
+    <table class="table table-striped">
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+        <tr th:if="${!repair['new']}" th:each="repair : ${order.repairs}">
+            <td th:text="${#temporals.format(repair.date, 'yyyy-MM-dd')}"/>
+            </td>
+            <td th:text=" ${repair.repairDescription}"/>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

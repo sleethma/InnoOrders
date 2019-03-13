@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-      <!--th:replace="~{fragments/layout :: layout (~{::body},'vets')}">-->
-      <head>
-          <meta charset="UTF-8">
+<!--th:replace="~{fragments/layout :: layout (~{::body},'vets')}">-->
+<head>
+    <meta charset="UTF-8">
 
-          <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-          <title>InnoSessions | Sales Reps</title>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>InnoSessions | Sales Reps</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-          <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
-          <style>
+    <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+    <style>
 
     :root{
  --global-font:amita;
@@ -42,6 +42,10 @@
   #jumbotron-jump{
     margin-top:300px;
   }
+}
+
+body{
+background-color:var(--muted);
 }
 
 div p{
@@ -105,32 +109,32 @@ ul{
 
 
 
+
     </style>
 
-      </head>
+</head>
 
 
-      <body>
-      <div class="container">
-          <div>
-              <nav class="navbar  navbar-fixed-top">
-                  <div class="container-fluid">
-                      <div class="navbar-header">
-                          <a class="navbar-brand" href="#">InnoSessions</a>
-                      </div>
-                      <ul class="nav navbar-nav">
-                          <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
-                          <li><a class="inn-nav-text" href="#">Orders</a></li>
-                          <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
-                      </ul>
-                      <ul class="nav navbar-nav navbar-right">
-                          <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                          <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                      </ul>
-                  </div>
-              </nav>
-          </div>
-      </div>
+<body>
+<div class="container">
+    <div>
+        <nav class="navbar  navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">InnoSessions</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
+                    <li><a class="inn-nav-text" href="#">Orders</a></li>
+                    <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
 <h2>Sales Representatives</h2>
 
@@ -145,10 +149,12 @@ ul{
     <tr th:each="salesRep : ${salesReps}">
         <td th:text="${salesRep.firstName + ' ' + salesRep.lastName}"></td>
         <td><span th:each="salesRepSpecialty : ${salesRep.specialties}"
-                  th:text="${salesRepSpecialty.specialty + ' '}" /> <span
+                  th:text="${salesRepSpecialty.specialty + ' '}"/> <span
                 th:if="${salesRepSpecialty?.specialties?.size() == 0}">none</span></td>
     </tr>
     </tbody>
 </table>
+</div>
+
 </body>
 </html>

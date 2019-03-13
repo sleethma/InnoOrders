@@ -40,6 +40,8 @@ public class CustomerController {
         return "customers/customerDetails";
     }
 
+
+
     @GetMapping("/customers")
     public String processFindForm(Customer customer, Model model) {
         //allow parameterless GET request for /customers to return all records
@@ -84,6 +86,8 @@ public class CustomerController {
         model.addAttribute("customer", customer);
         return "customers/create-or-update-customer-form";
     }
+
+
 
     @PostMapping("/customers/new")
     public String processNewOwnerForm(@Valid Customer customer, BindingResult result){
