@@ -14,8 +14,8 @@ import java.util.Set;
 public class SalesRep extends Person {
 
     @ManyToMany(fetch = FetchType.EAGER)
-      @JoinTable(name = "contractor_specialties",
-              joinColumns = @JoinColumn(name = "contractor_id"),
+      @JoinTable(name = "sales_rep_specialties",
+              joinColumns = @JoinColumn(name = "sales_rep_id"),
               inverseJoinColumns = @JoinColumn(name = "specialty_id"))
     Set<SalesRepSpecialty> specialties = new HashSet<>();
 }

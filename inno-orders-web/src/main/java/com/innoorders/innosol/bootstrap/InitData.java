@@ -40,26 +40,26 @@ public class InitData implements CommandLineRunner {
     }
 
     private void loadData() {
-        SalesRepSpecialty roofing = new SalesRepSpecialty();
-        roofing.setSpecialty("Roofing");
-        SalesRepSpecialty carpentry = new SalesRepSpecialty();
-        carpentry.setSpecialty("Carpentry");
-        SalesRepSpecialty plumbing = new SalesRepSpecialty();
-        plumbing.setSpecialty("Plumbing");
+        SalesRepSpecialty iot = new SalesRepSpecialty();
+        iot.setSpecialty("Iot");
+        SalesRepSpecialty maintainence = new SalesRepSpecialty();
+        maintainence.setSpecialty("Maintainence");
+        SalesRepSpecialty customSales = new SalesRepSpecialty();
+        customSales.setSpecialty("CustomSales");
 
 
         //persisting Specialties to Map
-        SalesRepSpecialty savedRoofingSpec = specialtyService.save(roofing);
-        SalesRepSpecialty savedCarpentrySpec = specialtyService.save(carpentry);
-        SalesRepSpecialty savedPlumbingSpec = specialtyService.save(plumbing);
+        SalesRepSpecialty savedIotSpec = specialtyService.save(iot);
+        SalesRepSpecialty savedMaintainenceSpec = specialtyService.save(maintainence);
+        SalesRepSpecialty savedCustomSalesSpec = specialtyService.save(customSales);
 
-        ProductType threeBedroom = new ProductType();
-        threeBedroom.setName("threeBedRoom");
-        ProductType savedThreeProductType = productTypeService.save(threeBedroom);
+        ProductType wristConnect = new ProductType();
+        wristConnect.setName("threeBedRoom");
+        ProductType savedThreeProductType = productTypeService.save(wristConnect);
 
-        ProductType fourBedroom = new ProductType();
-        fourBedroom.setName("fourBedroom");
-        ProductType savedFourProductType = productTypeService.save(fourBedroom);
+        ProductType badgeConnect = new ProductType();
+        badgeConnect.setName("badgeConnect");
+        ProductType savedFourProductType = productTypeService.save(badgeConnect);
 
         Customer testCustomer1 = new Customer();
         testCustomer1.setFirstName("FirstName1");
@@ -80,11 +80,11 @@ public class InitData implements CommandLineRunner {
 
 
         //Repair Services
-        RepairRequest testOwner1HomeRepair = new RepairRequest();
-        testOwner1HomeRepair.setDate(LocalDate.now());
-        testOwner1HomeRepair.setOrder(testOwner1Order);
-        testOwner1HomeRepair.setRepairDescription("Replaced Main Entry Wood Floor Section");
-        repairRequestService.save(testOwner1HomeRepair);
+        RepairRequest testOwner1DeviceRepair = new RepairRequest();
+        testOwner1DeviceRepair.setDate(LocalDate.now());
+        testOwner1DeviceRepair.setOrder(testOwner1Order);
+        testOwner1DeviceRepair.setRepairDescription("Replaced Wifi Adapter");
+        repairRequestService.save(testOwner1DeviceRepair);
 
 
         Customer dummyCustomer2 = new Customer();
@@ -115,14 +115,14 @@ public class InitData implements CommandLineRunner {
         SalesRep dummySalesRep1 = new SalesRep();
         dummySalesRep1.setFirstName("Jim");
         dummySalesRep1.setLastName("Baggins");
-        dummySalesRep1.getSpecialties().add(savedRoofingSpec);
+        dummySalesRep1.getSpecialties().add(savedIotSpec);
         salesRepService.save(dummySalesRep1);
 
         SalesRep dummySalesRep2 = new SalesRep();
         dummySalesRep2.setFirstName("Chase");
         dummySalesRep2.setLastName("Chitin");
-        dummySalesRep2.getSpecialties().add(savedPlumbingSpec);
-        dummySalesRep2.getSpecialties().add(savedCarpentrySpec);
+        dummySalesRep2.getSpecialties().add(savedCustomSalesSpec);
+        dummySalesRep2.getSpecialties().add(savedMaintainenceSpec);
         salesRepService.save(dummySalesRep2);
 
 
