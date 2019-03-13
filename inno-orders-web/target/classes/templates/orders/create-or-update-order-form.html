@@ -141,13 +141,11 @@ ul{
             </div>
         </div>
         <input
-                th:replace="~{fragments/inputField :: input ('Resident First Name', 'residentFirstName', 'text')}" />
-        <input
-                th:replace="~{fragments/inputField :: input ('Resident Last Name', 'residentLastName', 'text')}" />
+                th:replace="~{fragments/inputField :: input ('Product Name', 'residentFirstName', 'text')}" />
         <input
                 th:replace="~{fragments/inputField :: input ('Purchase Date', 'purchaseDate', 'date')}" />
         <input
-                th:replace="~{fragments/selectField :: select ('Type', 'productType', ${types})}" />
+                th:replace="~{fragments/selectField :: select ('Product Type', 'productType', ${types})}" />
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">

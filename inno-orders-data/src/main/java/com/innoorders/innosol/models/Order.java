@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
-@Data
+    @Data
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity{
