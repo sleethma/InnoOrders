@@ -18,7 +18,7 @@
     <style>
 
     :root{
- --global-font:amita;
+ --global-font:Roboto;
  <!--&#45;&#45;primary:#ffffff;-->
       <!--&#45;&#45;accent:#77C9D4;-->
       <!--&#45;&#45;dark:#015249;-->
@@ -36,11 +36,10 @@
     display:none;
   }
 }
+}
 
-@media only screen and (max-width: 770px)  {
-  #jumbotron-jump{
-    margin-top:300px;
-  }
+body{
+background-color:var(--muted);
 }
 
 div p{
@@ -58,7 +57,7 @@ ul{
 
 
     h1{
-       font-family: var(--global-font)
+       font-family: var(--global-font), sans-serif;
     }
 
     .container{
@@ -67,7 +66,7 @@ ul{
 
     .jumbotron{
       margin-top:70px;
-      background: linear-gradient(to right, var(--accent) 0%, var(--dark) 100%);
+      background: linear-gradient(to right, var(--dark) 75%, var(--accent) 0%);
       color:#ffffff;
     }
 
@@ -82,6 +81,10 @@ ul{
 .inn-nav-text{
         color:var(--muted);
     }
+    .inn-nav-login{
+            color:var(--accent);
+
+    }
     .inn-jumbotron-right{
       position:relative; top:100px;
     }
@@ -91,17 +94,28 @@ ul{
     }
 
     .inn-panel-heading{
-      background-color:var(--muted);
+      background-color:var(--accent);
     }
 
     .inn-accent-color{
       background-color:var(--accent);
     }
 
-    #footer{
-      background-color:var(--accent);
+    #powered-by{
+    margin: auto;
     }
 
+    .inn-nav-menu-button{
+    color:white;
+    font-size:20px;
+    margin:-5px 20px 15px 0px;
+    font-family:var(--global-font);
+    }
+
+    #footer{
+      background-color:var(--dark);
+      color:white;
+    }
 
 
 
@@ -112,24 +126,30 @@ ul{
 
 <body>
 <div class="container">
-    <div>
-        <nav class="navbar  navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">InnoSessions</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a class="inn-nav-text" href="#">Home</a></li>
-                    <li><a class="inn-nav-text" href="#">Orders</a></li>
-                    <li><a class="inn-nav-text" href="#">InnoSolutions</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a class="inn-nav-text" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
+    <nav class="navbar  navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#inn-navbar-collapsable">
+                    <span class="icon-bar inn-nav-menu-button" >Menu</span>
+
+                </button>
+                <a class="navbar-brand" href="#" th:href="@{/}">InnoSessions</a>
+                <!--th:href="@{{customerId}/orders/{orderId}/repairs/new(customerId=${customer.id},orderId=${order.id})}"-->
+
             </div>
-        </nav>
-    </div>
+            <div class="collapse navbar-collapse" id="inn-navbar-collapsable"/>
+            <ul class="nav navbar-nav">
+                <li><a class="inn-nav-text" href="#" th:href="@{/customers}">Customers</a></li>
+                <li><a class="inn-nav-text" href="#" th:href="@{/sales-rep}">Sales Reps</a></li>
+                <li><a class="inn-nav-text" href="#" th:href="@{/sales-rep/api}">API</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="inn-nav-login" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a class="inn-nav-login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <h2 th:text="'List Of Customers'">Customers List</h2>
 
