@@ -42,10 +42,10 @@ public class RepairControllerTest {
     MockMvc mockMvc;
 
     private URI uri;
-    private UriTemplate uriTemplate = new UriTemplate("/customers/{ownerId}/orders/{homeId}/repairs/new");
+    private UriTemplate uriTemplate = new UriTemplate("/customers/{customerId}/orders/{orderId}/repairs/new");
     private Map<String, String> uriVars;
-    Long ownerId = 1L;
-    Long homeId = 2L;
+    Long customerId = 1L;
+    Long orderId = 2L;
 
 
     @Before
@@ -58,7 +58,7 @@ public class RepairControllerTest {
     @Test
     public void processNewRepairFormNoErrors() throws Exception {
         Order order = new Order();
-        order.setId(homeId);
+        order.setId(orderId);
         order.setPurchaseDate(LocalDate.of(2018,11,11));
         RepairRequest repairRequest = new RepairRequest();
         repairRequest.setRepairDescription("Repair Description Here");
@@ -66,20 +66,20 @@ public class RepairControllerTest {
         repairRequest.setOrder(order);
         uriVars= new HashMap<>();
         uriVars.clear();
-        uriVars.put("ownerId", ownerId.toString());
-        uriVars.put("homeId", homeId.toString());
+        uriVars.put("customerId", customerId.toString());
+        uriVars.put("orderId", orderId.toString());
 
         uri = uriTemplate.expand(uriVars);
 
 
         //when
-        when(orderRepo.findById(homeId)).thenReturn(Optional.of(order));
+        when(orderRepo.findById(orderId)).thenReturn(Optional.of(order));
         mockMvc.perform(post(uri)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-        .param("date", "2018-11-11" )
-        .param("repairDescription","description again"))
+                .param("date", "2018-11-11" )
+                .param("repairDescription","description again"))
                 .andExpect(status().is3xxRedirection())
-        .andExpect(view().name("redirect:/customers/{ownerId}"));
+                .andExpect(view().name("redirect:/customers/{customerId}"));
 
 
     }
