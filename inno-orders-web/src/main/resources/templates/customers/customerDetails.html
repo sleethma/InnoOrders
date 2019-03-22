@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+    <html xmlns:th="http://www.thymeleaf.org">
       <!--th:replace="~{fragments/layout :: layout (~{::body},'customers')}">-->
 <head>
     <meta charset="UTF-8">
@@ -16,111 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
-    <style>
-
-    :root{
- --global-font:Roboto;
- <!--&#45;&#45;primary:#ffffff;-->
-      <!--&#45;&#45;accent:#77C9D4;-->
-      <!--&#45;&#45;dark:#015249;-->
-      <!--&#45;&#45;muted:#A5A5AF;-->
-      <!--&#45;&#45;accent-bright:#57BC90;-->
-
-      --primary:#18121E;
-      --dark:#233237;
-      --muted:#984B43;
-      --accent:#EAC67A;
-}
-
-    @media only screen and (max-width: 1000px)  {
-  #powered-by{
-    display:none;
-  }
-}
-}
-
-body{
-background-color:var(--muted);
-}
-
-div p{
-  font-size:15px;
-}
-
-ul{
-  font-size:20px;
-}
-
-    .inn-vert-center{
-      margin:20px 0 0 30px;
-    }
-
-
-
-    h1{
-       font-family: var(--global-font), sans-serif;
-    }
-
-    .container{
-      background-color:var(--primary);
-    }
-
-    .jumbotron{
-      margin-top:70px;
-      background: linear-gradient(to right, var(--dark) 75%, var(--accent) 0%);
-      color:#ffffff;
-    }
-
-.navbar{
-  background-color:var(--dark);
-}
-
-.navbar-brand{
-  color:var(--accent);
-}
-
-.inn-nav-text{
-        color:var(--muted);
-    }
-    .inn-nav-login{
-            color:var(--accent);
-
-    }
-    .inn-jumbotron-right{
-      position:relative; top:100px;
-    }
-
-    .inn-custom-text-stroke{
-       color: #99999;
-    }
-
-    .inn-panel-heading{
-      background-color:var(--accent);
-    }
-
-    .inn-accent-color{
-      background-color:var(--accent);
-    }
-
-    #powered-by{
-    margin: auto;
-    }
-
-    .inn-nav-menu-button{
-    color:white;
-    font-size:20px;
-    margin:-5px 20px 15px 0px;
-    font-family:var(--global-font);
-    }
-
-    #footer{
-      background-color:var(--dark);
-      color:white;
-    }
-
-
-
-    </style>
+    <link rel="stylesheet" th:href="@{/resources/css/main.css}"/>
 
 </head>
 
