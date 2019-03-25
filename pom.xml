@@ -39,6 +39,12 @@
 		<version>${jaxb.version}</version>
 	</dependency>
 	<dependency>
+		<groupId>com.google.appengine</groupId>
+		<artifactId>appengine-api-1.0-sdk</artifactId>
+		<version>1.9.71</version>
+	</dependency>
+
+	<dependency>
 		<groupId>com.sun.xml.bind</groupId>
 		<artifactId>jaxb-core</artifactId>
 		<version>${jaxb.version}</version>
