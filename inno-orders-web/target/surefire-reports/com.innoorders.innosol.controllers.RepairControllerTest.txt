@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.innoorders.innosol.controllers.RepairControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.14 s - in com.innoorders.innosol.controllers.RepairControllerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.256 s - in com.innoorders.innosol.controllers.RepairControllerTest
