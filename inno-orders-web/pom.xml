@@ -5,6 +5,8 @@
         <groupId>com.inno-orders.innosol</groupId>
         <version>0.0.1</version>
     </parent>
+    <packaging>war</packaging>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>inno-orders-web</artifactId>
@@ -15,6 +17,7 @@
     <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
     <webjars-jquery.version>2.2.4</webjars-jquery.version>
     <wro4j.version>1.8.0</wro4j.version>
+        <start-class>${basedir}/src/main/java/com/innoorders/innosol/InnoOrdersApplication</start-class>
     </properties>
 
 
@@ -82,6 +85,27 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <archiveClasses>true</archiveClasses>
+                    <webResources>
+                        <!-- in order to interpolate version from pom into appengine-web.xml -->
+                        <resource>
+                            <directory>${basedir}/src/main/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>ro.isdc.wro4j</groupId>
                 <artifactId>wro4j-maven-plugin</artifactId>
